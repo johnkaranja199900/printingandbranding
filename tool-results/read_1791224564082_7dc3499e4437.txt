@@ -1,0 +1,2002 @@
+     1→You are a Principal Software Architect, Senior Laravel Engineer, Database Architect, Security Architect, DevSecOps Engineer, UI/UX Engineer, QA Engineer, and Systems Integration Engineer.
+     2→
+     3→Build a complete production ready web based Printing, Publishing, Branding and Cyber Services Management System.
+     4→
+     5→The existing project contains static HTML/CSS/JavaScript screens. Treat the existing UI as the visual and functional reference, but DO NOT blindly convert the static HTML into Blade templates.
+     6→
+     7→The final system must be a real working Laravel application backed by MariaDB.
+     8→
+     9→The application should be designed primarily for mobile users but implemented as a responsive web application that can later be installed or packaged as a Progressive Web App.
+    10→
+    11→The system must be secure, maintainable, scalable, auditable and production ready.
+    12→
+    13→==================================================
+    14→1. TECHNOLOGY STACK
+    15→==================================================
+    16→
+    17→Backend:
+    18→
+    19→Laravel latest stable version compatible with the selected PHP version.
+    20→
+    21→PHP 8.3 or newer stable version compatible with the selected Laravel release.
+    22→
+    23→Database:
+    24→
+    25→MariaDB.
+    26→
+    27→Use InnoDB for transactional tables.
+    28→
+    29→Use utf8mb4.
+    30→
+    31→Use foreign keys.
+    32→
+    33→Use appropriate indexes.
+    34→
+    35→Use database transactions for all multi table financial and order operations.
+    36→
+    37→Frontend:
+    38→
+    39→Laravel Blade.
+    40→
+    41→Modern responsive HTML5.
+    42→
+    43→CSS.
+    44→
+    45→JavaScript.
+    46→
+    47→Use Alpine.js where lightweight interactivity is appropriate.
+    48→
+    49→Use Laravel Vite.
+    50→
+    51→Use Tailwind CSS only if it does not conflict with the existing design. Otherwise preserve and refactor the supplied CSS design system.
+    52→
+    53→Do not introduce unnecessary frontend complexity.
+    54→
+    55→Authentication:
+    56→
+    57→Laravel authentication using Laravel Fortify or an equivalent Laravel native authentication solution.
+    58→
+    59→Authorization:
+    60→
+    61→Role and permission based authorization.
+    62→
+    63→Recommended roles:
+    64→
+    65→super_admin
+    66→admin
+    67→manager
+    68→sales
+    69→production
+    70→designer
+    71→publisher
+    72→inventory_manager
+    73→finance
+    74→customer
+    75→author
+    76→staff
+    77→
+    78→Do not implement authorization using scattered if statements.
+    79→
+    80→Use Policies, Gates and permissions.
+    81→
+    82→Queue:
+    83→
+    84→Laravel queues.
+    85→
+    86→Use database queue initially.
+    87→
+    88→Architecture must allow Redis to be introduced later.
+    89→
+    90→Cache:
+    91→
+    92→Laravel cache.
+    93→
+    94→Use database or file cache initially.
+    95→
+    96→Architecture must support Redis.
+    97→
+    98→Scheduler:
+    99→
+   100→Laravel Scheduler.
+   101→
+   102→Storage:
+   103→
+   104→Laravel Filesystem.
+   105→
+   106→Use local private storage during development.
+   107→
+   108→Production must support S3 compatible private object storage.
+   109→
+   110→Notifications:
+   111→
+   112→Email.
+   113→
+   114→SMS.
+   115→
+   116→WhatsApp.
+   117→
+   118→In app notifications.
+   119→
+   120→M-Pesa.
+   121→
+   122→Payments:
+   123→
+   124→M-Pesa Daraja API architecture.
+   125→
+   126→PDF:
+   127→
+   128→Server side PDF generation for quotations, invoices, receipts and reports.
+   129→
+   130→Logging:
+   131→
+   132→Laravel logging.
+   133→
+   134→Security audit logging.
+   135→
+   136→Error monitoring ready.
+   137→
+   138→Deployment:
+   139→
+   140→Linux production server.
+   141→
+   142→Nginx.
+   143→
+   144→PHP-FPM.
+   145→
+   146→MariaDB.
+   147→
+   148→SSL.
+   149→
+   150→Queue worker.
+   151→
+   152→Cron.
+   153→
+   154→==================================================
+   155→2. SYSTEM OBJECTIVE
+   156→==================================================
+   157→
+   158→Build a complete business management platform for a company offering:
+   159→
+   160→Printing services.
+   161→
+   162→Book printing.
+   163→
+   164→Publishing.
+   165→
+   166→Book production.
+   167→
+   168→Branding.
+   169→
+   170→Graphic design.
+   171→
+   172→Cyber services.
+   173→
+   174→Document processing.
+   175→
+   176→Scanning.
+   177→
+   178→Typing.
+   179→
+   180→PDF conversion.
+   181→
+   182→Online application assistance.
+   183→
+   184→Other configurable services.
+   185→
+   186→The system must support the complete business lifecycle:
+   187→
+   188→Customer discovery.
+   189→
+   190→Service selection.
+   191→
+   192→Quote request.
+   193→
+   194→File upload.
+   195→
+   196→Quote preparation.
+   197→
+   198→Quote approval.
+   199→
+   200→Order creation.
+   201→
+   202→Deposit request.
+   203→
+   204→Payment.
+   205→
+   206→Production.
+   207→
+   208→Quality control.
+   209→
+   210→Completion.
+   211→
+   212→Customer notification.
+   213→
+   214→Delivery or collection.
+   215→
+   216→Final payment.
+   217→
+   218→Invoice.
+   219→
+   220→Receipt.
+   221→
+   222→Order completion.
+   223→
+   224→Historical reporting.
+   225→
+   226→==================================================
+   227→3. EXISTING UI TO IMPLEMENT
+   228→==================================================
+   229→
+   230→The supplied project contains these frontend areas:
+   231→
+   232→Home.
+   233→
+   234→Publishing.
+   235→
+   236→Books.
+   237→
+   238→Printing Services.
+   239→
+   240→Branding.
+   241→
+   242→Cyber Services.
+   243→
+   244→Portfolio.
+   245→
+   246→Request a Quote.
+   247→
+   248→Contact.
+   249→
+   250→Track Order.
+   251→
+   252→Customer Dashboard.
+   253→
+   254→Customer Quotations.
+   255→
+   256→Author Dashboard.
+   257→
+   258→Admin Dashboard.
+   259→
+   260→Admin Orders.
+   261→
+   262→Admin Quotations.
+   263→
+   264→Admin Publishing.
+   265→
+   266→Admin Portfolio.
+   267→
+   268→Admin Inventory.
+   269→
+   270→Admin Sales.
+   271→
+   272→Admin Reports.
+   273→
+   274→Admin Staff.
+   275→
+   276→Admin Notifications.
+   277→
+   278→Admin Login.
+   279→
+   280→These screens must become real Laravel application pages.
+   281→
+   282→Preserve the visual language of the existing design:
+   283→
+   284→Dark navy.
+   285→
+   286→Gold accent.
+   287→
+   288→White cards.
+   289→
+   290→Rounded components.
+   291→
+   292→Responsive layouts.
+   293→
+   294→Mobile navigation.
+   295→
+   296→Dashboard cards.
+   297→
+   298→Status badges.
+   299→
+   300→Tables.
+   301→
+   302→Forms.
+   303→
+   304→Timeline components.
+   305→
+   306→Quote summary panels.
+   307→
+   308→Portfolio cards.
+   309→
+   310→Service cards.
+   311→
+   312→Do not retain fake static data.
+   313→
+   314→Every displayed business value must eventually come from MariaDB or a controlled configuration source.
+   315→
+   316→==================================================
+   317→4. APPLICATION ARCHITECTURE
+   318→==================================================
+   319→
+   320→Use a modular Laravel architecture.
+   321→
+   322→Recommended domain modules:
+   323→
+   324→Authentication.
+   325→
+   326→Users.
+   327→
+   328→Customers.
+   329→
+   330→Authors.
+   331→
+   332→Staff.
+   333→
+   334→Services.
+   335→
+   336→Service Categories.
+   337→
+   338→Service Requests.
+   339→
+   340→Quotes.
+   341→
+   342→Quote Items.
+   343→
+   344→Orders.
+   345→
+   346→Order Items.
+   347→
+   348→Production.
+   349→
+   350→Publishing.
+   351→
+   352→Books.
+   353→
+   354→Authors.
+   355→
+   356→Inventory.
+   357→
+   358→Products.
+   359→
+   360→Payments.
+   361→
+   362→Invoices.
+   363→
+   364→Receipts.
+   365→
+   366→Notifications.
+   367→
+   368→SMS.
+   369→
+   370→WhatsApp.
+   371→
+   372→M-Pesa.
+   373→
+   374→Portfolio.
+   375→
+   376→Contacts.
+   377→
+   378→Reports.
+   379→
+   380→Audit Logs.
+   381→
+   382→System Settings.
+   383→
+   384→Files.
+   385→
+   386→==================================================
+   387→5. DATABASE DESIGN
+   388→==================================================
+   389→
+   390→Create proper Laravel migrations.
+   391→
+   392→Do not use one massive table.
+   393→
+   394→Use normalized relational design.
+   395→
+   396→Every table must contain:
+   397→
+   398→id.
+   399→
+   400→created_at.
+   401→
+   402→updated_at.
+   403→
+   404→Where appropriate:
+   405→
+   406→deleted_at.
+   407→
+   408→created_by.
+   409→
+   410→updated_by.
+   411→
+   412→deleted_by.
+   413→
+   414→Do not add these fields blindly to every table where they are not appropriate.
+   415→
+   416→==================================================
+   417→6. USERS
+   418→==================================================
+   419→
+   420→Create users table.
+   421→
+   422→Fields:
+   423→
+   424→id
+   425→name
+   426→email
+   427→phone
+   428→password
+   429→status
+   430→email_verified_at
+   431→phone_verified_at
+   432→last_login_at
+   433→last_login_ip
+   434→remember_token
+   435→created_at
+   436→updated_at
+   437→deleted_at
+   438→
+   439→Status:
+   440→
+   441→active
+   442→inactive
+   443→suspended
+   444→pending
+   445→
+   446→Never store passwords manually.
+   447→
+   448→Use Laravel password hashing.
+   449→
+   450→Never store plain text passwords.
+   451→
+   452→==================================================
+   453→7. ROLES AND PERMISSIONS
+   454→==================================================
+   455→
+   456→Implement RBAC.
+   457→
+   458→Tables:
+   459→
+   460→roles
+   461→
+   462→permissions
+   463→
+   464→role_user
+   465→
+   466→permission_role
+   467→
+   468→Permissions should be granular.
+   469→
+   470→Examples:
+   471→
+   472→users.view
+   473→
+   474→users.create
+   475→
+   476→users.update
+   477→
+   478→users.delete
+   479→
+   480→orders.view
+   481→
+   482→orders.create
+   483→
+   484→orders.update
+   485→
+   486→orders.cancel
+   487→
+   488→quotes.view
+   489→
+   490→quotes.create
+   491→
+   492→quotes.send
+   493→
+   494→quotes.approve
+   495→
+   496→payments.view
+   497→
+   498→payments.create
+   499→
+   500→payments.refund
+   501→
+   502→inventory.view
+   503→
+   504→inventory.manage
+   505→
+   506→reports.view
+   507→
+   508→staff.manage
+   509→
+   510→settings.manage
+   511→
+   512→audit.view
+   513→
+   514→Do not rely only on role names.
+   515→
+   516→==================================================
+   517→8. CUSTOMERS
+   518→==================================================
+   519→
+   520→Create customers table.
+   521→
+   522→Fields:
+   523→
+   524→id
+   525→user_id nullable
+   526→customer_number
+   527→customer_type
+   528→business_name nullable
+   529→first_name
+   530→last_name
+   531→phone
+   532→email nullable
+   533→address nullable
+   534→city nullable
+   535→county nullable
+   536→tax_number nullable
+   537→notes nullable
+   538→status
+   539→created_at
+   540→updated_at
+   541→deleted_at
+   542→
+   543→Customer types:
+   544→
+   545→individual
+   546→
+   547→business
+   548→
+   549→organization
+   550→
+   551→institution
+   552→
+   553→A customer may have multiple quotes.
+   554→
+   555→A customer may have multiple orders.
+   556→
+   557→A customer may have multiple payments.
+   558→
+   559→==================================================
+   560→9. AUTHORS
+   561→==================================================
+   562→
+   563→Create authors table.
+   564→
+   565→Fields:
+   566→
+   567→id
+   568→user_id nullable
+   569→author_number
+   570→first_name
+   571→last_name
+   572→pen_name nullable
+   573→email nullable
+   574→phone
+   575→bio nullable
+   576→website nullable
+   577→status
+   578→created_at
+   579→updated_at
+   580→deleted_at
+   581→
+   582→An author may own multiple books.
+   583→
+   584→==================================================
+   585→10. SERVICES
+   586→==================================================
+   587→
+   588→Create service_categories.
+   589→
+   590→Examples:
+   591→
+   592→Printing.
+   593→
+   594→Publishing.
+   595→
+   596→Branding.
+   597→
+   598→Cyber Services.
+   599→
+   600→Create services table.
+   601→
+   602→Fields:
+   603→
+   604→id
+   605→service_category_id
+   606→name
+   607→slug
+   608→description
+   609→pricing_type
+   610→base_price nullable
+   611→unit_name nullable
+   612→minimum_quantity nullable
+   613→estimated_days nullable
+   614→requires_file
+   615→requires_approval
+   616→is_active
+   617→sort_order
+   618→created_at
+   619→updated_at
+   620→
+   621→Pricing types:
+   622→
+   623→fixed
+   624→
+   625→per_unit
+   626→
+   627→per_page
+   628→
+   629→custom_quote
+   630→
+   631→formula
+   632→
+   633→==================================================
+   634→11. SERVICE SPECIFICATIONS
+   635→==================================================
+   636→
+   637→Different services require different information.
+   638→
+   639→Do not create hundreds of nullable columns in services.
+   640→
+   641→Implement flexible service metadata.
+   642→
+   643→Create service_fields.
+   644→
+   645→Fields:
+   646→
+   647→id
+   648→service_id
+   649→field_key
+   650→label
+   651→field_type
+   652→is_required
+   653→validation_rules nullable
+   654→options_json nullable
+   655→sort_order
+   656→is_active
+   657→
+   658→Field types:
+   659→
+   660→text
+   661→
+   662→textarea
+   663→
+   664→number
+   665→
+   666→decimal
+   667→
+   668→date
+   669→
+   670→select
+   671→
+   672→radio
+   673→
+   674→checkbox
+   675→
+   676→file
+   677→
+   678→This allows administrators to create configurable service forms.
+   679→
+   680→==================================================
+   681→12. QUOTE REQUESTS
+   682→==================================================
+   683→
+   684→Create quote_requests.
+   685→
+   686→Fields:
+   687→
+   688→id
+   689→request_number
+   690→customer_id
+   691→service_id nullable
+   692→subject
+   693→description
+   694→status
+   695→priority
+   696→requested_deadline nullable
+   697→estimated_budget nullable
+   698→assigned_to nullable
+   699→created_at
+   700→updated_at
+   701→
+   702→Statuses:
+   703→
+   704→draft
+   705→
+   706→submitted
+   707→
+   708→under_review
+   709→
+   710→pricing
+   711→
+   712→quoted
+   713→
+   714→approved
+   715→
+   716→rejected
+   717→
+   718→cancelled
+   719→
+   720→expired
+   721→
+   722→==================================================
+   723→13. QUOTE REQUEST DATA
+   724→==================================================
+   725→
+   726→Create quote_request_values.
+   727→
+   728→Fields:
+   729→
+   730→id
+   731→quote_request_id
+   732→service_field_id
+   733→value_text nullable
+   734→value_number nullable
+   735→value_date nullable
+   736→value_json nullable
+   737→
+   738→Never blindly trust client supplied field definitions.
+   739→
+   740→Validate values against the server side service field configuration.
+   741→
+   742→==================================================
+   743→14. FILE MANAGEMENT
+   744→==================================================
+   745→
+   746→Create files table.
+   747→
+   748→Fields:
+   749→
+   750→id
+   751→uuid
+   752→disk
+   753→path
+   754→original_name
+   755→stored_name
+   756→mime_type
+   757→extension
+   758→size
+   759→checksum
+   760→uploaded_by
+   761→visibility
+   762→virus_scan_status
+   763→created_at
+   764→updated_at
+   765→
+   766→Never expose private storage paths directly.
+   767→
+   768→Use signed routes or controlled download controllers.
+   769→
+   770→File security requirements:
+   771→
+   772→Validate MIME type.
+   773→
+   774→Validate extension.
+   775→
+   776→Validate file size.
+   777→
+   778→Generate random stored filenames.
+   779→
+   780→Never trust original filenames.
+   781→
+   782→Never execute uploaded files.
+   783→
+   784→Store uploads outside public directory.
+   785→
+   786→Perform antivirus scanning where available.
+   787→
+   788→Calculate SHA256 checksum.
+   789→
+   790→Prevent path traversal.
+   791→
+   792→Use authorization before downloads.
+   793→
+   794→==================================================
+   795→15. QUOTATIONS
+   796→==================================================
+   797→
+   798→Create quotations.
+   799→
+   800→Fields:
+   801→
+   802→id
+   803→quote_number
+   804→quote_request_id
+   805→customer_id
+   806→status
+   807→currency
+   808→subtotal
+   809→discount
+   810→tax
+   811→total
+   812→valid_until
+   813→notes
+   814→terms
+   815→created_by
+   816→approved_at
+   817→sent_at
+   818→created_at
+   819→updated_at
+   820→
+   821→Quotation statuses:
+   822→
+   823→draft
+   824→
+   825→pending_review
+   826→
+   827→approved
+   828→
+   829→sent
+   830→
+   831→customer_viewed
+   832→
+   833→customer_accepted
+   834→
+   835→customer_rejected
+   836→
+   837→expired
+   838→
+   839→cancelled
+   840→
+   841→==================================================
+   842→16. QUOTE ITEMS
+   843→==================================================
+   844→
+   845→Create quotation_items.
+   846→
+   847→Fields:
+   848→
+   849→id
+   850→quotation_id
+   851→service_id nullable
+   852→description
+   853→quantity
+   854→unit_price
+   855→discount
+   856→tax_rate
+   857→line_total
+   858→sort_order
+   859→
+   860→Calculate totals on the server.
+   861→
+   862→Never trust totals submitted from JavaScript.
+   863→
+   864→Use decimal database types.
+   865→
+   866→Do not use floating point for money.
+   867→
+   868→Recommended:
+   869→
+   870→DECIMAL(15,2)
+   871→
+   872→==================================================
+   873→17. ORDER MANAGEMENT
+   874→==================================================
+   875→
+   876→Create orders.
+   877→
+   878→Fields:
+   879→
+   880→id
+   881→order_number
+   882→customer_id
+   883→quotation_id nullable
+   884→status
+   885→payment_status
+   886→production_status
+   887→subtotal
+   888→discount
+   889→tax
+   890→total
+   891→amount_paid
+   892→amount_due
+   893→deposit_required
+   894→deposit_amount
+   895→expected_completion_date
+   896→actual_completion_date nullable
+   897→assigned_to nullable
+   898→notes
+   899→created_at
+   900→updated_at
+   901→deleted_at
+   902→
+   903→Order statuses:
+   904→
+   905→pending
+   906→
+   907→confirmed
+   908→
+   909→awaiting_payment
+   910→
+   911→queued
+   912→
+   913→in_production
+   914→
+   915→quality_check
+   916→
+   917→ready
+   918→
+   919→completed
+   920→
+   921→cancelled
+   922→
+   923→refunded
+   924→
+   925→==================================================
+   926→18. ORDER ITEMS
+   927→==================================================
+   928→
+   929→Create order_items.
+   930→
+   931→Fields:
+   932→
+   933→id
+   934→order_id
+   935→service_id nullable
+   936→description
+   937→quantity
+   938→unit_price
+   939→discount
+   940→tax_rate
+   941→line_total
+   942→production_notes
+   943→status
+   944→
+   945→Each order may contain multiple services.
+   946→
+   947→==================================================
+   948→19. ORDER STATUS HISTORY
+   949→==================================================
+   950→
+   951→Create order_status_history.
+   952→
+   953→Fields:
+   954→
+   955→id
+   956→order_id
+   957→from_status
+   958→to_status
+   959→changed_by
+   960→reason
+   961→notes
+   962→created_at
+   963→
+   964→Every important status transition must be recorded.
+   965→
+   966→Never silently change order status.
+   967→
+   968→==================================================
+   969→20. PRODUCTION MANAGEMENT
+   970→==================================================
+   971→
+   972→Create production_jobs.
+   973→
+   974→Fields:
+   975→
+   976→id
+   977→order_id
+   978→order_item_id
+   979→job_number
+   980→assigned_to
+   981→status
+   982→priority
+   983→start_at
+   984→due_at
+   985→completed_at
+   986→instructions
+   987→notes
+   988→
+   989→Statuses:
+   990→
+   991→queued
+   992→
+   993→assigned
+   994→
+   995→in_progress
+   996→
+   997→paused
+   998→
+   999→quality_check
+  1000→
+  1001→rework
+  1002→
+  1003→completed
+  1004→
+  1005→cancelled
+  1006→
+  1007→Production employees must only see jobs they are authorized to access.
+  1008→
+  1009→==================================================
+  1010→21. QUALITY CONTROL
+  1011→==================================================
+  1012→
+  1013→Create quality_checks.
+  1014→
+  1015→Fields:
+  1016→
+  1017→id
+  1018→production_job_id
+  1019→checked_by
+  1020→status
+  1021→notes
+  1022→issues
+  1023→checked_at
+  1024→
+  1025→Statuses:
+  1026→
+  1027→passed
+  1028→
+  1029→failed
+  1030→
+  1031→requires_rework
+  1032→
+  1033→If failed:
+  1034→
+  1035→automatically create or reopen production work.
+  1036→
+  1037→Record the reason.
+  1038→
+  1039→==================================================
+  1040→22. BOOK PUBLISHING
+  1041→==================================================
+  1042→
+  1043→Create books.
+  1044→
+  1045→Fields:
+  1046→
+  1047→id
+  1048→author_id
+  1049→title
+  1050→subtitle nullable
+  1051→isbn nullable
+  1052→description
+  1053→genre nullable
+  1054→language
+  1055→edition nullable
+  1056→publication_status
+  1057→page_count nullable
+  1058→cover_type nullable
+  1059→paper_type nullable
+  1060→format nullable
+  1061→selling_price nullable
+  1062→publication_date nullable
+  1063→created_at
+  1064→updated_at
+  1065→
+  1066→Publishing statuses:
+  1067→
+  1068→draft
+  1069→
+  1070→manuscript_submitted
+  1071→
+  1072→editing
+  1073→
+  1074→design
+  1075→
+  1076→proofreading
+  1077→
+  1078→approved
+  1079→
+  1080→printing
+  1081→
+  1082→published
+  1083→
+  1084→archived
+  1085→
+  1086→==================================================
+  1087→23. BOOK MANUSCRIPTS
+  1088→==================================================
+  1089→
+  1090→Create manuscript_versions.
+  1091→
+  1092→Fields:
+  1093→
+  1094→id
+  1095→book_id
+  1096→version_number
+  1097→file_id
+  1098→submitted_by
+  1099→notes
+  1100→status
+  1101→created_at
+  1102→
+  1103→Never overwrite manuscript files.
+  1104→
+  1105→Every revision must be versioned.
+  1106→
+  1107→==================================================
+  1108→24. INVENTORY
+  1109→==================================================
+  1110→
+  1111→Create:
+  1112→
+  1113→inventory_items
+  1114→
+  1115→inventory_transactions
+  1116→
+  1117→suppliers
+  1118→
+  1119→purchase_orders
+  1120→
+  1121→purchase_order_items
+  1122→
+  1123→stock_adjustments
+  1124→
+  1125→Inventory items may include:
+  1126→
+  1127→paper
+  1128→
+  1129→ink
+  1130→
+  1131→binding materials
+  1132→
+  1133→covers
+  1134→
+  1135→packaging
+  1136→
+  1137→printing materials
+  1138→
+  1139→stationery
+  1140→
+  1141→other consumables
+  1142→
+  1143→inventory_transactions must support:
+  1144→
+  1145→purchase
+  1146→
+  1147→sale
+  1148→
+  1149→consumption
+  1150→
+  1151→adjustment
+  1152→
+  1153→return
+  1154→
+  1155→damage
+  1156→
+  1157→transfer
+  1158→
+  1159→Use database transactions when changing stock.
+  1160→
+  1161→Prevent negative stock unless explicitly allowed by configuration.
+  1162→
+  1163→==================================================
+  1164→25. PAYMENTS
+  1165→==================================================
+  1166→
+  1167→Create payments.
+  1168→
+  1169→Fields:
+  1170→
+  1171→id
+  1172→payment_reference
+  1173→order_id nullable
+  1174→customer_id
+  1175→payment_method
+  1176→amount
+  1177→currency
+  1178→status
+  1179→transaction_reference nullable
+  1180→provider_reference nullable
+  1181→paid_at nullable
+  1182→metadata_json nullable
+  1183→created_at
+  1184→updated_at
+  1185→
+  1186→Methods:
+  1187→
+  1188→cash
+  1189→
+  1190→mpesa
+  1191→
+  1192→bank
+  1193→
+  1194→card
+  1195→
+  1196→other
+  1197→
+  1198→Statuses:
+  1199→
+  1200→pending
+  1201→
+  1202→processing
+  1203→
+  1204→successful
+  1205→
+  1206→failed
+  1207→
+  1208→cancelled
+  1209→
+  1210→refunded
+  1211→
+  1212→==================================================
+  1213→26. M-PESA
+  1214→==================================================
+  1215→
+  1216→Implement M-Pesa using a dedicated service abstraction.
+  1217→
+  1218→Do not put M-Pesa logic inside controllers.
+  1219→
+  1220→Create:
+  1221→
+  1222→MpesaServiceInterface
+  1223→
+  1224→MpesaDarajaService
+  1225→
+  1226→MpesaPaymentService
+  1227→
+  1228→MpesaCallbackController
+  1229→
+  1230→MpesaConfiguration
+  1231→
+  1232→Support:
+  1233→
+  1234→STK Push.
+  1235→
+  1236→Callback handling.
+  1237→
+  1238→Transaction validation.
+  1239→
+  1240→Duplicate callback protection.
+  1241→
+  1242→Payment reconciliation.
+  1243→
+  1244→Logging.
+  1245→
+  1246→Timeout handling.
+  1247→
+  1248→Retry handling.
+  1249→
+  1250→Configuration through admin settings and environment variables.
+  1251→
+  1252→Never store secrets in database unless encrypted.
+  1253→
+  1254→Environment variables:
+  1255→
+  1256→MPESA_ENVIRONMENT
+  1257→
+  1258→MPESA_CONSUMER_KEY
+  1259→
+  1260→MPESA_CONSUMER_SECRET
+  1261→
+  1262→MPESA_SHORTCODE
+  1263→
+  1264→MPESA_PASSKEY
+  1265→
+  1266→MPESA_CALLBACK_URL
+  1267→
+  1268→MPESA_ACCOUNT_REFERENCE
+  1269→
+  1270→MPESA_TRANSACTION_DESCRIPTION
+  1271→
+  1272→Do not trust callback amounts blindly.
+  1273→
+  1274→Verify:
+  1275→
+  1276→merchant identifier
+  1277→
+  1278→transaction reference
+  1279→
+  1280→amount
+  1281→
+  1282→account/reference
+  1283→
+  1284→timestamp
+  1285→
+  1286→transaction uniqueness
+  1287→
+  1288→order association
+  1289→
+  1290→==================================================
+  1291→27. PAYMENT IDEMPOTENCY
+  1292→==================================================
+  1293→
+  1294→Payment operations must be idempotent.
+  1295→
+  1296→The same M-Pesa callback must never create two payments.
+  1297→
+  1298→Use unique database constraints.
+  1299→
+  1300→Example:
+  1301→
+  1302→provider_reference UNIQUE
+  1303→
+  1304→payment_reference UNIQUE
+  1305→
+  1306→Use database transactions.
+  1307→
+  1308→==================================================
+  1309→28. SMS
+  1310→==================================================
+  1311→
+  1312→Create notification abstraction.
+  1313→
+  1314→Do not hardcode a single SMS provider.
+  1315→
+  1316→Create:
+  1317→
+  1318→SmsProviderInterface
+  1319→
+  1320→SmsManager
+  1321→
+  1322→Provider implementations.
+  1323→
+  1324→Allow administrators to configure:
+  1325→
+  1326→provider
+  1327→
+  1328→API URL
+  1329→
+  1330→API key
+  1331→
+  1332→sender ID
+  1333→
+  1334→username
+  1335→
+  1336→password
+  1337→
+  1338→timeout
+  1339→
+  1340→active status
+  1341→
+  1342→Test connection.
+  1343→
+  1344→Credentials must be encrypted.
+  1345→
+  1346→Never expose API credentials to frontend JavaScript.
+  1347→
+  1348→==================================================
+  1349→29. WHATSAPP
+  1350→==================================================
+  1351→
+  1352→Implement WhatsApp using provider abstraction.
+  1353→
+  1354→Support WhatsApp Business API or compatible provider.
+  1355→
+  1356→Create:
+  1357→
+  1358→WhatsAppProviderInterface
+  1359→
+  1360→WhatsAppManager
+  1361→
+  1362→WhatsApp templates.
+  1363→
+  1364→Allow configurable message templates.
+  1365→
+  1366→Example:
+  1367→
+  1368→QUOTE_CREATED
+  1369→
+  1370→QUOTE_APPROVED
+  1371→
+  1372→ORDER_CONFIRMED
+  1373→
+  1374→PAYMENT_RECEIVED
+  1375→
+  1376→ORDER_IN_PRODUCTION
+  1377→
+  1378→ORDER_READY
+  1379→
+  1380→ORDER_COMPLETED
+  1381→
+  1382→PAYMENT_REMINDER
+  1383→
+  1384→Do not allow arbitrary unvalidated customer supplied template content to execute as system messages.
+  1385→
+  1386→==================================================
+  1387→30. EMAIL
+  1388→==================================================
+  1389→
+  1390→Implement Laravel Mail.
+  1391→
+  1392→Email templates must be configurable.
+  1393→
+  1394→Support:
+  1395→
+  1396→quote notification
+  1397→
+  1398→quote approval
+  1399→
+  1400→payment receipt
+  1401→
+  1402→invoice
+  1403→
+  1404→order confirmation
+  1405→
+  1406→order status
+  1407→
+  1408→password reset
+  1409→
+  1410→account verification
+  1411→
+  1412→staff notifications
+  1413→
+  1414→==================================================
+  1415→31. NOTIFICATION ENGINE
+  1416→==================================================
+  1417→
+  1418→Create notifications table or use Laravel notifications.
+  1419→
+  1420→Every important business event should trigger notification workflows.
+  1421→
+  1422→Examples:
+  1423→
+  1424→Quote created.
+  1425→
+  1426→Quote sent.
+  1427→
+  1428→Quote accepted.
+  1429→
+  1430→Order created.
+  1431→
+  1432→Payment received.
+  1433→
+  1434→Production started.
+  1435→
+  1436→Order ready.
+  1437→
+  1438→Order completed.
+  1439→
+  1440→Payment overdue.
+  1441→
+  1442→Use queued jobs.
+  1443→
+  1444→Never make an external SMS/WhatsApp/API call directly inside a normal HTTP request if it can be queued.
+  1445→
+  1446→==================================================
+  1447→32. AUTOMATION
+  1448→==================================================
+  1449→
+  1450→Implement Laravel Scheduler.
+  1451→
+  1452→Scheduled tasks:
+  1453→
+  1454→Expire old quotations.
+  1455→
+  1456→Find overdue payments.
+  1457→
+  1458→Send payment reminders.
+  1459→
+  1460→Send order status reminders.
+  1461→
+  1462→Retry failed notifications.
+  1463→
+  1464→Retry failed webhooks where safe.
+  1465→
+  1466→Generate scheduled reports.
+  1467→
+  1468→Clean temporary files.
+  1469→
+  1470→Remove expired temporary tokens.
+  1471→
+  1472→Detect abandoned quote requests.
+  1473→
+  1474→Reconcile pending payments.
+  1475→
+  1476→==================================================
+  1477→33. CUSTOMER PORTAL
+  1478→==================================================
+  1479→
+  1480→Customers must be able to:
+  1481→
+  1482→Register.
+  1483→
+  1484→Login.
+  1485→
+  1486→Verify account.
+  1487→
+  1488→Update profile.
+  1489→
+  1490→Request quote.
+  1491→
+  1492→Upload files.
+  1493→
+  1494→View quotations.
+  1495→
+  1496→Accept quotation.
+  1497→
+  1498→Reject quotation.
+  1499→
+  1500→View orders.
+  1501→
+  1502→Track order.
+  1503→
+  1504→View payment history.
+  1505→
+  1506→Make M-Pesa payment.
+  1507→
+  1508→Download invoices.
+  1509→
+  1510→Download receipts.
+  1511→
+  1512→Download approved quotation.
+  1513→
+  1514→View notifications.
+  1515→
+  1516→Contact company.
+  1517→
+  1518→==================================================
+  1519→34. PUBLIC ORDER TRACKING
+  1520→==================================================
+  1521→
+  1522→Allow tracking using:
+  1523→
+  1524→order number
+  1525→
+  1526→AND optionally verification token or phone/email verification.
+  1527→
+  1528→Do NOT expose sensitive customer information merely because someone knows an order number.
+  1529→
+  1530→Never expose:
+  1531→
+  1532→full phone number
+  1533→
+  1534→email
+  1535→
+  1536→address
+  1537→
+  1538→financial details
+  1539→
+  1540→internal notes
+  1541→
+  1542→staff information
+  1543→
+  1544→private files
+  1545→
+  1546→unless authenticated and authorized.
+  1547→
+  1548→==================================================
+  1549→35. ADMIN DASHBOARD
+  1550→==================================================
+  1551→
+  1552→Dashboard must display real database metrics.
+  1553→
+  1554→Examples:
+  1555→
+  1556→Total sales.
+  1557→
+  1558→Outstanding payments.
+  1559→
+  1560→Today's sales.
+  1561→
+  1562→Monthly sales.
+  1563→
+  1564→Pending quotations.
+  1565→
+  1566→Active orders.
+  1567→
+  1568→Orders in production.
+  1569→
+  1570→Completed orders.
+  1571→
+  1572→Low stock items.
+  1573→
+  1574→Unread notifications.
+  1575→
+  1576→Pending production jobs.
+  1577→
+  1578→Overdue orders.
+  1579→
+  1580→Use efficient aggregate queries.
+  1581→
+  1582→Do not retrieve thousands of records and calculate totals in PHP.
+  1583→
+  1584→Use SQL aggregation.
+  1585→
+  1586→==================================================
+  1587→36. SALES MANAGEMENT
+  1588→==================================================
+  1589→
+  1590→Admin sales screen should provide:
+  1591→
+  1592→sales overview
+  1593→
+  1594→daily sales
+  1595→
+  1596→weekly sales
+  1597→
+  1598→monthly sales
+  1599→
+  1600→sales by service
+  1601→
+  1602→sales by employee
+  1603→
+  1604→sales by payment method
+  1605→
+  1606→outstanding balances
+  1607→
+  1608→paid orders
+  1609→
+  1610→partially paid orders
+  1611→
+  1612→overdue accounts
+  1613→
+  1614→refunds
+  1615→
+  1616→Export reports.
+  1617→
+  1618→==================================================
+  1619→37. QUOTATION MANAGEMENT
+  1620→==================================================
+  1621→
+  1622→Admin quotation workflow:
+  1623→
+  1624→View request.
+  1625→
+  1626→Review files.
+  1627→
+  1628→Review service specifications.
+  1629→
+  1630→Assign staff.
+  1631→
+  1632→Calculate price.
+  1633→
+  1634→Add quote items.
+  1635→
+  1636→Apply discounts if authorized.
+  1637→
+  1638→Apply tax.
+  1639→
+  1640→Set expiry date.
+  1641→
+  1642→Generate quotation PDF.
+  1643→
+  1644→Send quotation.
+  1645→
+  1646→Customer views quotation.
+  1647→
+  1648→Customer accepts or rejects.
+  1649→
+  1650→Accepted quotation can become an order.
+  1651→
+  1652→Record every state transition.
+  1653→
+  1654→==================================================
+  1655→38. ORDER MANAGEMENT
+  1656→==================================================
+  1657→
+  1658→Admin order workflow:
+  1659→
+  1660→Quote accepted.
+  1661→
+  1662→Create order.
+  1663→
+  1664→Confirm payment requirements.
+  1665→
+  1666→Create production jobs.
+  1667→
+  1668→Assign staff.
+  1669→
+  1670→Track progress.
+  1671→
+  1672→Quality control.
+  1673→
+  1674→Mark ready.
+  1675→
+  1676→Notify customer.
+  1677→
+  1678→Complete order.
+  1679→
+  1680→Generate final invoice/receipt.
+  1681→
+  1682→Record final payment.
+  1683→
+  1684→Close order.
+  1685→
+  1686→==================================================
+  1687→39. FINANCIAL CONTROLS
+  1688→==================================================
+  1689→
+  1690→Implement strict financial controls.
+  1691→
+  1692→Never allow staff to arbitrarily modify:
+  1693→
+  1694→total
+  1695→
+  1696→amount paid
+  1697→
+  1698→amount due
+  1699→
+  1700→payment status
+  1701→
+  1702→without authorization.
+  1703→
+  1704→Every financial modification must be audited.
+  1705→
+  1706→Use immutable payment records.
+  1707→
+  1708→If a payment is wrong, create reversal/refund records.
+  1709→
+  1710→Do not delete successful payment records.
+  1711→
+  1712→==================================================
+  1713→40. AUDIT LOGGING
+  1714→==================================================
+  1715→
+  1716→Create audit_logs.
+  1717→
+  1718→Fields:
+  1719→
+  1720→id
+  1721→user_id
+  1722→action
+  1723→entity_type
+  1724→entity_id
+  1725→old_values_json
+  1726→new_values_json
+  1727→ip_address
+  1728→user_agent
+  1729→request_id
+  1730→created_at
+  1731→
+  1732→Log sensitive events:
+  1733→
+  1734→login.
+  1735→
+  1736→failed login.
+  1737→
+  1738→logout.
+  1739→
+  1740→password change.
+  1741→
+  1742→role change.
+  1743→
+  1744→permission change.
+  1745→
+  1746→quote modification.
+  1747→
+  1748→quote approval.
+  1749→
+  1750→order creation.
+  1751→
+  1752→order cancellation.
+  1753→
+  1754→payment creation.
+  1755→
+  1756→payment reversal.
+  1757→
+  1758→inventory adjustment.
+  1759→
+  1760→file access.
+  1761→
+  1762→configuration change.
+  1763→
+  1764→API credential change.
+  1765→
+  1766→==================================================
+  1767→41. SECURITY
+  1768→==================================================
+  1769→
+  1770→Apply OWASP security practices.
+  1771→
+  1772→Protect against:
+  1773→
+  1774→SQL injection.
+  1775→
+  1776→XSS.
+  1777→
+  1778→CSRF.
+  1779→
+  1780→Mass assignment.
+  1781→
+  1782→IDOR.
+  1783→
+  1784→Broken access control.
+  1785→
+  1786→Session fixation.
+  1787→
+  1788→Session hijacking.
+  1789→
+  1790→Brute force attacks.
+  1791→
+  1792→Credential stuffing.
+  1793→
+  1794→File upload attacks.
+  1795→
+  1796→Path traversal.
+  1797→
+  1798→SSRF.
+  1799→
+  1800→Webhook spoofing.
+  1801→
+  1802→Replay attacks.
+  1803→
+  1804→Sensitive data exposure.
+  1805→
+  1806→Privilege escalation.
+  1807→
+  1808→Race conditions.
+  1809→
+  1810→Duplicate payments.
+  1811→
+  1812→Do not trust frontend validation.
+  1813→
+  1814→Everything important must be validated server side.
+  1815→
+  1816→==================================================
+  1817→42. AUTHENTICATION SECURITY
+  1818→==================================================
+  1819→
+  1820→Use:
+  1821→
+  1822→strong password hashing.
+  1823→
+  1824→rate limiting.
+  1825→
+  1826→session regeneration after login.
+  1827→
+  1828→secure cookies.
+  1829→
+  1830→HttpOnly.
+  1831→
+  1832→Secure cookies in production.
+  1833→
+  1834→SameSite protection.
+  1835→
+  1836→email verification.
+  1837→
+  1838→password reset.
+  1839→
+  1840→optional 2FA for administrators.
+  1841→
+  1842→Account lockout or progressive throttling.
+  1843→
+  1844→Login audit logs.
+  1845→
+  1846→==================================================
+  1847→43. API SECURITY
+  1848→==================================================
+  1849→
+  1850→If APIs are implemented:
+  1851→
+  1852→Use Laravel Sanctum.
+  1853→
+  1854→Use token abilities.
+  1855→
+  1856→Expire/revoke tokens.
+  1857→
+  1858→Rate limit endpoints.
+  1859→
+  1860→Validate all requests.
+  1861→
+  1862→Do not expose internal IDs unnecessarily.
+  1863→
+  1864→Use UUIDs or public reference IDs for externally exposed resources where appropriate.
+  1865→
+  1866→==================================================
+  1867→44. WEBHOOK SECURITY
+  1868→==================================================
+  1869→
+  1870→All external callbacks must be:
+  1871→
+  1872→authenticated.
+  1873→
+  1874→validated.
+  1875→
+  1876→logged.
+  1877→
+  1878→idempotent.
+  1879→
+  1880→rate limited.
+  1881→
+  1882→protected against replay.
+  1883→
+  1884→Never trust request IP alone as authentication.
+  1885→
+  1886→Where provider supports signatures, validate signatures.
+  1887→
+  1888→Store raw webhook payload securely for troubleshooting.
+  1889→
+  1890→==================================================
+  1891→45. DATABASE SECURITY
+  1892→==================================================
+  1893→
+  1894→MariaDB requirements:
+  1895→
+  1896→Use utf8mb4.
+  1897→
+  1898→Use foreign keys.
+  1899→
+  1900→Use proper indexes.
+  1901→
+  1902→Use unique constraints.
+  1903→
+  1904→Use CHECK constraints where supported and appropriate.
+  1905→
+  1906→Use DECIMAL for money.
+  1907→
+  1908→Use DATETIME/TIMESTAMP consistently.
+  1909→
+  1910→Never store passwords manually.
+  1911→
+  1912→Encrypt sensitive credentials.
+  1913→
+  1914→Never store API secrets in plain text.
+  1915→
+  1916→Use least privilege database user.
+  1917→
+  1918→Application database account must not have unnecessary administrative privileges.
+  1919→
+  1920→==================================================
+  1921→46. DATABASE INDEXING
+  1922→==================================================
+  1923→
+  1924→Create indexes for:
+  1925→
+  1926→users.email
+  1927→
+  1928→users.phone
+  1929→
+  1930→customers.customer_number
+  1931→
+  1932→customers.phone
+  1933→
+  1934→quotes.quote_number
+  1935→
+  1936→orders.order_number
+  1937→
+  1938→payments.payment_reference
+  1939→
+  1940→payments.transaction_reference
+  1941→
+  1942→payments.provider_reference
+  1943→
+  1944→orders.status
+  1945→
+  1946→orders.payment_status
+  1947→
+  1948→orders.created_at
+  1949→
+  1950→quote_requests.status
+  1951→
+  1952→production_jobs.status
+  1953→
+  1954→production_jobs.assigned_to
+  1955→
+  1956→notifications.user_id
+  1957→
+  1958→audit_logs.user_id
+  1959→
+  1960→audit_logs.entity_type/entity_id
+  1961→
+  1962→Foreign keys.
+  1963→
+  1964→Do not create indexes blindly.
+  1965→
+  1966→Review query plans for major dashboard queries.
+  1967→
+  1968→==================================================
+  1969→47. CONCURRENCY
+  1970→==================================================
+  1971→
+  1972→Protect financial and inventory operations against race conditions.
+  1973→
+  1974→Use:
+  1975→
+  1976→database transactions.
+  1977→
+  1978→row locking.
+  1979→
+  1980→SELECT FOR UPDATE where required.
+  1981→
+  1982→unique constraints.
+  1983→
+  1984→idempotency keys.
+  1985→
+  1986→Example:
+  1987→
+  1988→Two simultaneous payment callbacks must not increase amount_paid twice.
+  1989→
+  1990→Two staff members updating stock simultaneously must not corrupt inventory.
+  1991→
+  1992→Two administrators approving the same quotation must not create duplicate orders.
+  1993→
+  1994→==================================================
+  1995→48. FILE STORAGE
+  1996→==================================================
+  1997→
+  1998→Create secure file service.
+  1999→
+  2000→Support:
+
+[showing lines 1-2000 of 4617; use offset=2001 with limit to continue reading]

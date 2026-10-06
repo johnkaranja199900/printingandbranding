@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My Quotations | Customer Portal</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body class="customer-shell">
+    <div class="customer-layout">
+      <aside class="customer-sidebar">
+        <div class="brand"><div class="logo-mark">P</div><div class="brand-copy"><strong>Print & Publish</strong><small>Customer Portal</small></div></div>
+        <nav class="customer-nav">
+          <a href="customer-dashboard.html">Dashboard</a>
+          <a href="customer-orders.html">My Orders</a>
+          <a href="customer-quotations.html" class="active">My Quotations</a>
+          <a href="customer-invoices.html">My Invoices</a>
+          <a href="customer-payments.html">Payments</a>
+          <a href="customer-books.html">My Books</a>
+          <a href="customer-manuscripts.html">My Manuscripts</a>
+          <a href="customer-files.html">My Files</a>
+          <a href="customer-messages.html">Messages</a>
+          <a href="customer-notifications.html">Notifications</a>
+          <a href="customer-profile.html">Profile</a>
+          <a href="customer-support.html">Support</a>
+          <a href="index.html">Logout</a>
+        </nav>
+      </aside>
+
+      <main class="customer-main">
+        <div class="section-header">
+          <div class="eyebrow">Quotation</div>
+          <h2>Quotation #QT-00124</h2>
+        </div>
+
+        <div class="quote-box">
+          <div class="eyebrow">Service</div>
+          <h3>Book Printing</h3>
+          <div class="field-grid" style="margin-top:18px;">
+            <div><strong>Quantity</strong><p>500 copies</p></div>
+            <div><strong>Subtotal</strong><p>KES 85,000</p></div>
+            <div><strong>Discount</strong><p>KES 5,000</p></div>
+            <div><strong>Total</strong><p class="amount">KES 80,000</p></div>
+          </div>
+          <div class="btn-row">
+            <button class="btn btn-primary">Accept Quote</button>
+            <button class="btn btn-light">Request Changes</button>
+            <button class="btn btn-ghost">Reject Quote</button>
+            <button class="btn btn-light">Download PDF</button>
+            <button class="btn btn-light">Ask a Question</button>
+          </div>
+        </div>
+
+        <div class="panel" style="margin-top: 26px;">
+          <div class="section-header"><div class="eyebrow">Revision history</div><h3>Quotation version timeline</h3></div>
+          <div class="version-list">
+            <div class="version-item">
+              <strong>Version 1</strong>
+              <div>KES 95,000</div>
+              <small>Sent 10 Sept</small>
+            </div>
+            <div class="version-item">
+              <strong>Version 2</strong>
+              <div>KES 88,000</div>
+              <small>Sent 11 Sept</small>
+            </div>
+            <div class="version-item">
+              <strong>Version 3</strong>
+              <div>KES 80,000</div>
+              <small>Accepted 12 Sept</small>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+    <nav class="mobile-nav"><a href="customer-dashboard.html">Dashboard</a><a href="customer-orders.html">Orders</a><a href="customer-quotations.html">Quotes</a><a href="customer-profile.html">Profile</a></nav>
+    <script src="script.js"></script>
+  </body>
+</html>

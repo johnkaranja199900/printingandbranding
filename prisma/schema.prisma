@@ -1,0 +1,854 @@
+// Print & Publish Co. — Printing, Publishing, Branding & Cyber Services Management System
+// Prisma schema (SQLite). Money stored as Decimal. Soft deletes via deletedAt columns.
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+// ============================================================
+// USERS, ROLES & PERMISSIONS (RBAC)
+// ============================================================
+
+model User {
+  id              String   @id @default(cuid())
+  email           String   @unique
+  phone           String?  @unique
+  name            String
+  passwordHash    String
+  role            UserRole @default(CUSTOMER)
+  status          UserStatus @default(ACTIVE)
+  avatarUrl       String?
+  lastLoginAt     DateTime?
+  lastLoginIp     String?
+  emailVerifiedAt DateTime?
+  phoneVerifiedAt DateTime?
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+  deletedAt       DateTime?
+
+  customer        Customer?
+  author          Author?
+  quoteRequests   QuoteRequest[]     @relation("QuoteRequestCreator")
+  quotations      Quotation[]        @relation("QuotationCreator")
+  ordersAssigned  Order[]            @relation("OrderAssignee")
+  productionJobs  ProductionJob[]    @relation("ProductionAssignee")
+  qualityChecks   QualityCheck[]     @relation("QualityChecker")
+  payments        Payment[]          @relation("PaymentRecorder")
+  auditLogs       AuditLog[]         @relation("AuditActor")
+  notifications   Notification[]
+  contactAssigned ContactMessage[]   @relation("ContactAssignee")
+  manuscripts     ManuscriptVersion[] @relation("ManuscriptSubmitter")
+  inventoryTxns    InventoryTransaction[] @relation("InventoryTxnActor")
+  orderHistory    OrderStatusHistory[] @relation("OrderHistoryActor")
+
+  @@index([role])
+  @@index([status])
+}
+
+enum UserRole {
+  SUPER_ADMIN
+  ADMIN
+  MANAGER
+  SALES
+  PRODUCTION
+  DESIGNER
+  PUBLISHER
+  INVENTORY_MANAGER
+  FINANCE
+  CUSTOMER
+  AUTHOR
+  STAFF
+}
+
+enum UserStatus {
+  ACTIVE
+  INACTIVE
+  SUSPENDED
+  PENDING
+}
+
+// ============================================================
+// CUSTOMERS
+// ============================================================
+
+model Customer {
+  id            String   @id @default(cuid())
+  userId        String   @unique
+  user          User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  customerNumber String  @unique
+  customerType  CustomerType @default(INDIVIDUAL)
+  businessName  String?
+  firstName     String
+  lastName      String
+  phone         String
+  email         String?
+  address       String?
+  city          String?
+  county        String?
+  taxNumber     String?
+  notes         String?
+  status        CustomerStatus @default(ACTIVE)
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+  deletedAt     DateTime?
+
+  quoteRequests  QuoteRequest[]
+  quotations     Quotation[]
+  orders         Order[]
+  payments       Payment[]
+
+  @@index([phone])
+  @@index([customerType])
+}
+
+enum CustomerType {
+  INDIVIDUAL
+  BUSINESS
+  ORGANIZATION
+  INSTITUTION
+}
+
+enum CustomerStatus {
+  ACTIVE
+  INACTIVE
+  BLACKLISTED
+}
+
+// ============================================================
+// AUTHORS
+// ============================================================
+
+model Author {
+  id            String   @id @default(cuid())
+  userId        String?  @unique
+  user          User?    @relation(fields: [userId], references: [id], onDelete: SetNull)
+  authorNumber  String   @unique
+  firstName     String
+  lastName      String
+  penName       String?
+  email         String?
+  phone         String
+  bio           String?
+  website       String?
+  status        String   @default("active")
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+  deletedAt     DateTime?
+
+  books         Book[]
+
+  @@index([phone])
+}
+
+// ============================================================
+// SERVICE CATALOG (configurable)
+// ============================================================
+
+model ServiceCategory {
+  id          String   @id @default(cuid())
+  name        String   @unique
+  slug        String   @unique
+  description String?
+  icon        String?
+  sortOrder   Int      @default(0)
+  isActive    Boolean  @default(true)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  services    Service[]
+}
+
+model Service {
+  id                String   @id @default(cuid())
+  categoryId        String
+  category          ServiceCategory @relation(fields: [categoryId], references: [id])
+  name              String
+  slug              String   @unique
+  description       String?
+  pricingType       PricingType
+  basePrice         Decimal? 
+  unitName          String?
+  minimumQuantity   Int?
+  estimatedDays      Int?
+  requiresFile      Boolean  @default(false)
+  requiresApproval  Boolean  @default(true)
+  isActive          Boolean  @default(true)
+  isFeatured        Boolean  @default(false)
+  sortOrder         Int      @default(0)
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+
+  fields            ServiceField[]
+  quoteRequests     QuoteRequest[]
+  quotationItems    QuotationItem[]
+  orderItems        OrderItem[]
+
+  @@index([categoryId])
+  @@index([isActive])
+}
+
+enum PricingType {
+  FIXED
+  PER_UNIT
+  PER_PAGE
+  CUSTOM_QUOTE
+  FORMULA
+}
+
+model ServiceField {
+  id              String   @id @default(cuid())
+  serviceId       String
+  service         Service  @relation(fields: [serviceId], references: [id], onDelete: Cascade)
+  fieldKey        String
+  label           String
+  fieldType       FieldType
+  isRequired      Boolean  @default(false)
+  validationRules String?
+  optionsJson     String?
+  placeholder     String?
+  helpText        String?
+  sortOrder       Int      @default(0)
+  isActive        Boolean  @default(true)
+
+  quoteValues     QuoteRequestValue[]
+
+  @@index([serviceId])
+  @@unique([serviceId, fieldKey])
+}
+
+enum FieldType {
+  TEXT
+  TEXTAREA
+  NUMBER
+  DECIMAL
+  DATE
+  SELECT
+  RADIO
+  CHECKBOX
+  FILE
+}
+
+// ============================================================
+// FILE METADATA (secure storage abstraction)
+// ============================================================
+
+model FileRecord {
+  id              String   @id @default(cuid())
+  uuid            String   @unique
+  disk            String   @default("local")
+  path            String
+  originalName    String
+  storedName      String
+  mimeType        String
+  extension       String
+  sizeBytes       Int
+  checksum        String?
+  uploadedById    String?
+  visibility      String   @default("private")
+  virusScanStatus String   @default("pending")
+  createdAt       DateTime @default(now())
+
+  manuscripts     ManuscriptVersion[]
+}
+
+// ============================================================
+// QUOTE REQUESTS
+// ============================================================
+
+model QuoteRequest {
+  id               String   @id @default(cuid())
+  requestNumber    String   @unique
+  customerId       String
+  customer         Customer @relation(fields: [customerId], references: [id])
+  serviceId        String?
+  service          Service?  @relation(fields: [serviceId], references: [id])
+  createdBy        String?
+  creator          User?     @relation("QuoteRequestCreator", fields: [createdBy], references: [id])
+  subject          String
+  description      String
+  status           QuoteRequestStatus @default(SUBMITTED)
+  priority        QuotePriority @default(NORMAL)
+  requestedDeadline DateTime?
+  estimatedBudget  Decimal?  
+  assignedToId     String?
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+
+  values           QuoteRequestValue[]
+  quotations       Quotation[]
+
+  @@index([customerId])
+  @@index([status])
+  @@index([serviceId])
+}
+
+enum QuoteRequestStatus {
+  DRAFT
+  SUBMITTED
+  UNDER_REVIEW
+  PRICING
+  QUOTED
+  APPROVED
+  REJECTED
+  CANCELLED
+  EXPIRED
+}
+
+enum QuotePriority {
+  NORMAL
+  URGENT
+  VERY_URGENT
+  SCHEDULED
+}
+
+model QuoteRequestValue {
+  id              String   @id @default(cuid())
+  quoteRequestId  String
+  quoteRequest    QuoteRequest @relation(fields: [quoteRequestId], references: [id], onDelete: Cascade)
+  serviceFieldId  String
+  serviceField    ServiceField @relation(fields: [serviceFieldId], references: [id])
+  valueText      String?
+  valueNumber    Float?
+  valueDate      DateTime?
+  valueJson      String?
+
+  @@unique([quoteRequestId, serviceFieldId])
+}
+
+// ============================================================
+// QUOTATIONS
+// ============================================================
+
+model Quotation {
+  id              String   @id @default(cuid())
+  quoteNumber     String   @unique
+  quoteRequestId  String?
+  quoteRequest    QuoteRequest? @relation(fields: [quoteRequestId], references: [id])
+  customerId      String
+  customer        Customer @relation(fields: [customerId], references: [id])
+  status          QuotationStatus @default(DRAFT)
+  currency        String   @default("KES")
+  subtotal        Decimal   @default(0)
+  discount        Decimal   @default(0)
+  taxRate         Decimal   @default(0)
+  tax             Decimal   @default(0)
+  total           Decimal   @default(0)
+  validUntil      DateTime
+  notes           String?
+  terms           String?
+  createdById     String?
+  createdBy       User?     @relation("QuotationCreator", fields: [createdById], references: [id])
+  approvedAt      DateTime?
+  sentAt          DateTime?
+  customerViewedAt DateTime?
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  items           QuotationItem[]
+  orders          Order[]
+
+  @@index([customerId])
+  @@index([status])
+}
+
+enum QuotationStatus {
+  DRAFT
+  PENDING_REVIEW
+  APPROVED
+  SENT
+  CUSTOMER_VIEWED
+  CUSTOMER_ACCEPTED
+  CUSTOMER_REJECTED
+  EXPIRED
+  CANCELLED
+}
+
+model QuotationItem {
+  id              String   @id @default(cuid())
+  quotationId     String
+  quotation       Quotation @relation(fields: [quotationId], references: [id], onDelete: Cascade)
+  serviceId       String?
+  service         Service?  @relation(fields: [serviceId], references: [id])
+  description     String
+  quantity        Decimal   @default(1)
+  unitPrice       Decimal  
+  discount        Decimal   @default(0)
+  taxRate         Decimal   @default(0)
+  lineTotal       Decimal   @default(0)
+  sortOrder       Int      @default(0)
+
+  @@index([quotationId])
+}
+
+// ============================================================
+// ORDERS
+// ============================================================
+
+model Order {
+  id                    String   @id @default(cuid())
+  orderNumber           String   @unique
+  customerId            String
+  customer              Customer @relation(fields: [customerId], references: [id])
+  quotationId           String?
+  quotation             Quotation? @relation(fields: [quotationId], references: [id])
+  status                OrderStatus @default(PENDING)
+  paymentStatus         PaymentStatus @default(UNPAID)
+  productionStatus      String? @default("not_started")
+  currency              String   @default("KES")
+  subtotal              Decimal   @default(0)
+  discount              Decimal   @default(0)
+  tax                   Decimal   @default(0)
+  total                 Decimal   @default(0)
+  amountPaid            Decimal   @default(0)
+  amountDue             Decimal   @default(0)
+  depositRequired       Decimal   @default(0)
+  depositAmount         Decimal   @default(0)
+  expectedCompletionDate DateTime?
+  actualCompletionDate  DateTime?
+  assignedToId          String?
+  assignee              User?     @relation("OrderAssignee", fields: [assignedToId], references: [id])
+  trackingToken         String   @unique
+  notes                 String?
+  createdAt             DateTime @default(now())
+  updatedAt             DateTime @updatedAt
+  deletedAt             DateTime?
+
+  items                 OrderItem[]
+  statusHistory         OrderStatusHistory[]
+  productionJobs        ProductionJob[]
+  payments              Payment[]
+
+  @@index([customerId])
+  @@index([status])
+  @@index([paymentStatus])
+  @@index([createdAt])
+}
+
+enum OrderStatus {
+  PENDING
+  CONFIRMED
+  AWAITING_PAYMENT
+  QUEUED
+  IN_PRODUCTION
+  QUALITY_CHECK
+  READY
+  COMPLETED
+  CANCELLED
+  REFUNDED
+}
+
+enum PaymentStatus {
+  UNPAID
+  PARTIALLY_PAID
+  PAID
+  OVERPAID
+  REFUNDED
+}
+
+model OrderItem {
+  id              String   @id @default(cuid())
+  orderId         String
+  order           Order    @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  serviceId       String?
+  service         Service? @relation(fields: [serviceId], references: [id])
+  description     String
+  quantity        Decimal   @default(1)
+  unitPrice       Decimal  
+  discount        Decimal   @default(0)
+  taxRate         Decimal   @default(0)
+  lineTotal       Decimal   @default(0)
+  productionNotes String?
+  status          String   @default("pending")
+
+  @@index([orderId])
+}
+
+model OrderStatusHistory {
+  id          String   @id @default(cuid())
+  orderId     String
+  order       Order    @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  fromStatus  OrderStatus?
+  toStatus    OrderStatus
+  changedById String?
+  changedBy   User?     @relation("OrderHistoryActor", fields: [changedById], references: [id])
+  reason      String?
+  notes       String?
+  createdAt   DateTime @default(now())
+
+  @@index([orderId])
+}
+
+// ============================================================
+// PRODUCTION & QUALITY CONTROL
+// ============================================================
+
+model ProductionJob {
+  id            String   @id @default(cuid())
+  orderId       String
+  order         Order    @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  orderItemId   String?
+  jobNumber     String   @unique
+  assignedToId  String?
+  assignee      User?     @relation("ProductionAssignee", fields: [assignedToId], references: [id])
+  status        ProductionStatus @default(QUEUED)
+  priority      QuotePriority @default(NORMAL)
+  startAt       DateTime?
+  dueAt         DateTime?
+  completedAt   DateTime?
+  instructions  String?
+  notes         String?
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  qualityChecks QualityCheck[]
+
+  @@index([orderId])
+  @@index([status])
+  @@index([assignedToId])
+}
+
+enum ProductionStatus {
+  QUEUED
+  ASSIGNED
+  IN_PROGRESS
+  PAUSED
+  QUALITY_CHECK
+  REWORK
+  COMPLETED
+  CANCELLED
+}
+
+model QualityCheck {
+  id              String   @id @default(cuid())
+  productionJobId String
+  productionJob   ProductionJob @relation(fields: [productionJobId], references: [id], onDelete: Cascade)
+  checkedById     String?
+  checkedBy       User?     @relation("QualityChecker", fields: [checkedById], references: [id])
+  status          QCStatus
+  notes           String?
+  issues          String?
+  checkedAt       DateTime @default(now())
+
+  @@index([productionJobId])
+}
+
+enum QCStatus {
+  PASSED
+  FAILED
+  REQUIRES_REWORK
+}
+
+// ============================================================
+// BOOKS & MANUSCRIPTS
+// ============================================================
+
+model Book {
+  id                String   @id @default(cuid())
+  authorId          String
+  author            Author   @relation(fields: [authorId], references: [id])
+  title             String
+  subtitle          String?
+  isbn              String?  @unique
+  description       String?
+  genre             String?
+  language          String   @default("English")
+  edition           String?
+  publicationStatus PublicationStatus @default(DRAFT)
+  pageCount         Int?
+  coverType         String?
+  paperType         String?
+  format            String?
+  sellingPrice      Decimal? 
+  coverImageUrl     String?
+  publicationDate   DateTime?
+  isFeatured        Boolean  @default(false)
+  isPublished       Boolean  @default(false)
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+
+  manuscripts       ManuscriptVersion[]
+
+  @@index([authorId])
+  @@index([publicationStatus])
+}
+
+enum PublicationStatus {
+  DRAFT
+  MANUSCRIPT_SUBMITTED
+  EDITING
+  DESIGN
+  PROOFREADING
+  APPROVED
+  PRINTING
+  PUBLISHED
+  ARCHIVED
+}
+
+model ManuscriptVersion {
+  id              String   @id @default(cuid())
+  bookId          String
+  book            Book     @relation(fields: [bookId], references: [id], onDelete: Cascade)
+  versionNumber   Int
+  fileId          String?
+  file            FileRecord? @relation(fields: [fileId], references: [id])
+  submittedById   String?
+  submitter       User?     @relation("ManuscriptSubmitter", fields: [submittedById], references: [id])
+  notes           String?
+  status          String   @default("submitted")
+  createdAt       DateTime @default(now())
+
+  @@index([bookId])
+}
+
+// ============================================================
+// INVENTORY
+// ============================================================
+
+model InventoryItem {
+  id              String   @id @default(cuid())
+  sku             String   @unique
+  name            String
+  category        String
+  description     String?
+  unit            String   @default("pcs")
+  quantity        Decimal   @default(0)
+  reorderLevel    Decimal   @default(0)
+  unitCost        Decimal   @default(0)
+  supplierId      String?
+  supplier        Supplier? @relation(fields: [supplierId], references: [id])
+  location        String?
+  isActive        Boolean  @default(true)
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  transactions    InventoryTransaction[]
+
+  @@index([category])
+  @@index([name])
+}
+
+model Supplier {
+  id          String   @id @default(cuid())
+  name        String
+  email       String?
+  phone       String?
+  address     String?
+  contactPerson String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  inventoryTxns InventoryTransaction[]
+  items         InventoryItem[]
+}
+
+model InventoryTransaction {
+  id              String   @id @default(cuid())
+  itemId          String
+  item            InventoryItem @relation(fields: [itemId], references: [id])
+  supplierId      String?
+  supplier        Supplier? @relation(fields: [supplierId], references: [id])
+  type            InventoryTxnType
+  quantity        Decimal  
+  unitCost        Decimal   @default(0)
+  reference       String?
+  notes           String?
+  actorId         String?
+  actor           User?     @relation("InventoryTxnActor", fields: [actorId], references: [id])
+  createdAt       DateTime @default(now())
+
+  @@index([itemId])
+  @@index([type])
+}
+
+enum InventoryTxnType {
+  PURCHASE
+  SALE
+  CONSUMPTION
+  ADJUSTMENT
+  RETURN
+  DAMAGE
+  TRANSFER
+}
+
+// ============================================================
+// PAYMENTS
+// ============================================================
+
+model Payment {
+  id                  String   @id @default(cuid())
+  paymentReference    String   @unique
+  orderId             String?
+  order               Order?   @relation(fields: [orderId], references: [id])
+  customerId          String
+  customer            Customer @relation(fields: [customerId], references: [id])
+  method              PaymentMethod
+  amount              Decimal  
+  currency            String   @default("KES")
+  status              PaymentRecordStatus @default(PENDING)
+  transactionReference String?  @unique
+  providerReference   String?  @unique
+  recordedById        String?
+  recorder            User?    @relation("PaymentRecorder", fields: [recordedById], references: [id])
+  paidAt              DateTime?
+  metadataJson        String?
+  notes              String?
+  createdAt           DateTime @default(now())
+  updatedAt           DateTime @updatedAt
+
+  @@index([orderId])
+  @@index([customerId])
+  @@index([status])
+}
+
+enum PaymentMethod {
+  CASH
+  MPESA
+  BANK
+  CARD
+  OTHER
+}
+
+enum PaymentRecordStatus {
+  PENDING
+  PROCESSING
+  SUCCESSFUL
+  FAILED
+  CANCELLED
+  REFUNDED
+}
+
+// ============================================================
+// NOTIFICATIONS & TEMPLATES
+// ============================================================
+
+model Notification {
+  id          String   @id @default(cuid())
+  userId      String
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  title       String
+  message     String
+  type        String   @default("info")
+  link        String?
+  isRead      Boolean  @default(false)
+  createdAt   DateTime @default(now())
+
+  @@index([userId])
+  @@index([isRead])
+}
+
+model NotificationTemplate {
+  id          String   @id @default(cuid())
+  event       String
+  channel     String   @default("in_app")
+  subject     String
+  body        String
+  variablesJson String?
+  isActive    Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@unique([event, channel])
+}
+
+// ============================================================
+// PORTFOLIO
+// ============================================================
+
+model PortfolioItem {
+  id            String   @id @default(cuid())
+  title         String
+  slug          String   @unique
+  category      String
+  description   String?
+  imageUrl      String?
+  projectDate   DateTime?
+  clientName    String?
+  isFeatured    Boolean  @default(false)
+  isPublished   Boolean  @default(true)
+  sortOrder     Int      @default(0)
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  @@index([category])
+  @@index([isPublished])
+}
+
+// ============================================================
+// CONTACT MESSAGES
+// ============================================================
+
+model ContactMessage {
+  id            String   @id @default(cuid())
+  name          String
+  email         String
+  phone         String?
+  subject       String
+  message       String
+  status        String   @default("new")
+  assignedToId  String?
+  assignee      User?    @relation("ContactAssignee", fields: [assignedToId], references: [id])
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  @@index([status])
+}
+
+// ============================================================
+// SETTINGS
+// ============================================================
+
+model Setting {
+  id          String   @id @default(cuid())
+  key         String   @unique
+  value       String
+  group       String   @default("general")
+  isEncrypted Boolean  @default(false)
+  updatedAt   DateTime @updatedAt
+}
+
+// ============================================================
+// AUDIT LOG
+// ============================================================
+
+model AuditLog {
+  id            String   @id @default(cuid())
+  actorId       String?
+  actor         User?    @relation("AuditActor", fields: [actorId], references: [id])
+  action        String
+  entityType    String
+  entityId      String?
+  oldValuesJson String?
+  newValuesJson String?
+  ipAddress     String?
+  userAgent     String?
+  createdAt     DateTime @default(now())
+
+  @@index([actorId])
+  @@index([entityType])
+  @@index([action])
+}
+
+// ============================================================
+// WHATSAPP BOT CONVERSATIONS
+// ============================================================
+
+model WhatsappMessage {
+  id           String   @id @default(cuid())
+  fromPhone    String
+  toPhone      String?
+  direction    String   @default("incoming") // incoming | outgoing
+  body         String
+  intent       String?
+  status       String   @default("received") // received | replied | blocked | failed
+  metadataJson String?
+  createdAt    DateTime @default(now())
+
+  @@index([fromPhone])
+  @@index([createdAt])
+  @@index([direction])
+}

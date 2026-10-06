@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Request a Quote | Print & Publish Co.</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="topbar">
+      <div class="container topbar-inner">
+        <span>📍 Nairobi, Kenya · Fast quotation support</span>
+        <div class="topbar-links">
+          <a href="tel:+254700000000">+254 700 000 000</a>
+          <a href="mailto:hello@printpublish.co.ke">hello@printpublish.co.ke</a>
+        </div>
+      </div>
+    </div>
+
+    <header class="site-header">
+      <div class="container header-inner">
+        <a href="index.html" class="brand">
+          <div class="logo-mark">P</div>
+          <div class="brand-copy"><strong>Print & Publish Co.</strong><small>Publishing • Printing • Branding</small></div>
+        </a>
+        <nav class="main-nav">
+          <a href="index.html">Home</a>
+          <a href="publishing.html">Publishing</a>
+          <a href="books.html">Books</a>
+          <a href="printing.html">Printing Services</a>
+          <a href="branding.html">Branding</a>
+          <a href="cyber.html">Cyber Services</a>
+          <a href="portfolio.html">Portfolio</a>
+          <a href="quote.html">Request a Quote</a>
+          <a href="contact.html">Contact</a>
+          <a href="admin-login.html">Login</a>
+        </nav>
+        <div class="nav-actions">
+          <a href="track-order.html" class="btn btn-light">Track Order</a>
+        </div>
+      </div>
+    </header>
+
+    <section class="page-hero">
+      <div class="container">
+        <div>
+          <div class="breadcrumbs">Home / Request a Quote</div>
+          <h1>Request a Quote</h1>
+        </div>
+        <a href="track-order.html" class="btn btn-light">Track an Order</a>
+      </div>
+    </section>
+
+    <main class="section">
+      <div class="container quote-layout">
+        <div class="form-card">
+          <div class="section-header">
+            <div class="eyebrow">Project enquiry</div>
+            <h2>Tell us about your project</h2>
+          </div>
+
+          <form>
+            <div class="form-grid">
+              <div class="form-group">
+                <label>Full Name <span class="required">*</span></label>
+                <input type="text" placeholder="Jane Njeri" />
+              </div>
+              <div class="form-group">
+                <label>Company / Organization</label>
+                <input type="text" placeholder="ABC Solutions" />
+              </div>
+              <div class="form-group">
+                <label>Phone Number <span class="required">*</span></label>
+                <input type="tel" placeholder="+254 712 345 678" />
+              </div>
+              <div class="form-group">
+                <label>Email Address <span class="required">*</span></label>
+                <input type="email" placeholder="hello@example.com" />
+              </div>
+              <div class="form-group full">
+                <label>Physical Location</label>
+                <input type="text" placeholder="Nairobi, Kenya" />
+              </div>
+              <div class="form-group">
+                <label>Preferred Contact Method</label>
+                <select>
+                  <option>Phone</option>
+                  <option>Email</option>
+                  <option>WhatsApp</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label>Service Category</label>
+                <select id="serviceCategory">
+                  <option value="bookPublishing">Book Publishing</option>
+                  <option value="bookPrinting">Book Printing</option>
+                  <option value="digitalPrinting">Digital Printing</option>
+                  <option value="branding">Branding</option>
+                  <option value="largeFormat">Large Format Printing</option>
+                  <option value="cyberServices">Cyber Services</option>
+                  <option value="graphicDesign">Graphic Design</option>
+                  <option value="other">Other</option>
+                </select>
+              </div>
+
+              <div class="form-group full">
+                <label>Service Details</label>
+                <textarea placeholder="Describe your project, quantity, goals, materials and due date."></textarea>
+              </div>
+
+              <div class="form-group full" data-service-field="bookPrinting">
+                <h3>Book Printing Details</h3>
+              </div>
+              <div class="form-group" data-service-field="bookPrinting">
+                <label>Book Title</label>
+                <input type="text" placeholder="My Book Title" />
+              </div>
+              <div class="form-group" data-service-field="bookPrinting">
+                <label>Author</label>
+                <input type="text" placeholder="Author name" />
+              </div>
+              <div class="form-group" data-service-field="bookPrinting">
+                <label>Publisher</label>
+                <input type="text" placeholder="Publisher" />
+              </div>
+              <div class="form-group" data-service-field="bookPrinting">
+                <label>Number of Pages</label>
+                <input type="number" placeholder="120" />
+              </div>
+              <div class="form-group" data-service-field="bookPrinting">
+                <label>Number of Copies</label>
+                <input type="number" placeholder="500" />
+              </div>
+              <div class="form-group" data-service-field="bookPrinting">
+                <label>Book Size</label>
+                <select>
+                  <option>A5</option>
+                  <option>A4</option>
+                  <option>6x9</option>
+                  <option>Other</option>
+                </select>
+              </div>
+              <div class="form-group" data-service-field="bookPrinting">
+                <label>Paper Type</label>
+                <input type="text" placeholder="Matte / Gloss" />
+              </div>
+              <div class="form-group" data-service-field="bookPrinting">
+                <label>Inside Printing</label>
+                <select>
+                  <option>Full Colour</option>
+                  <option>Black & White</option>
+                  <option>Colour inside / black cover</option>
+                </select>
+              </div>
+              <div class="form-group" data-service-field="bookPrinting">
+                <label>Cover Type</label>
+                <select>
+                  <option>Paperback</option>
+                  <option>Hardcover</option>
+                  <option>Spiral</option>
+                </select>
+              </div>
+              <div class="form-group" data-service-field="bookPrinting">
+                <label>Cover Finish</label>
+                <select>
+                  <option>Matte</option>
+                  <option>Gloss</option>
+                  <option>Laminate</option>
+                </select>
+              </div>
+              <div class="form-group" data-service-field="bookPrinting">
+                <label>Binding Type</label>
+                <select>
+                  <option>Perfect binding</option>
+                  <option>Staple binding</option>
+                  <option>Spiral</option>
+                </select>
+              </div>
+              <div class="form-group" data-service-field="bookPrinting">
+                <label>Colour / Black & White</label>
+                <select>
+                  <option>Full Colour</option>
+                  <option>Black & White</option>
+                  <option>Mixed</option>
+                </select>
+              </div>
+              <div class="form-group" data-service-field="bookPrinting">
+                <label>Expected Completion Date</label>
+                <input type="date" />
+              </div>
+              <div class="form-group full" data-service-field="bookPrinting">
+                <label>Additional Instructions</label>
+                <textarea placeholder="Any extra requirements or print notes"></textarea>
+              </div>
+
+              <div class="form-group full" data-service-field="branding">
+                <h3>Branding Details</h3>
+              </div>
+              <div class="form-group" data-service-field="branding">
+                <label>Branding Type</label>
+                <input type="text" placeholder="Vehicle branding" />
+              </div>
+              <div class="form-group" data-service-field="branding">
+                <label>Surface</label>
+                <input type="text" placeholder="Window / wall / vehicle" />
+              </div>
+              <div class="form-group" data-service-field="branding">
+                <label>Dimensions</label>
+                <input type="text" placeholder="2m x 1m" />
+              </div>
+              <div class="form-group" data-service-field="branding">
+                <label>Material</label>
+                <input type="text" placeholder="Vinyl / canvas" />
+              </div>
+              <div class="form-group" data-service-field="branding">
+                <label>Quantity</label>
+                <input type="number" placeholder="50" />
+              </div>
+              <div class="form-group" data-service-field="branding">
+                <label>Design Available</label>
+                <select>
+                  <option>Yes</option>
+                  <option>No</option>
+                </select>
+              </div>
+              <div class="form-group" data-service-field="branding">
+                <label>Installation Required</label>
+                <select>
+                  <option>Yes</option>
+                  <option>No</option>
+                </select>
+              </div>
+
+              <div class="form-group full" data-service-field="cyberServices">
+                <h3>Cyber Services Details</h3>
+              </div>
+              <div class="form-group" data-service-field="cyberServices">
+                <label>Service Required</label>
+                <input type="text" placeholder="Typing / Scanning / PDF conversion" />
+              </div>
+              <div class="form-group" data-service-field="cyberServices">
+                <label>Number of Pages</label>
+                <input type="number" placeholder="40" />
+              </div>
+              <div class="form-group" data-service-field="cyberServices">
+                <label>Document Type</label>
+                <input type="text" placeholder="CV / Proposal / Report" />
+              </div>
+              <div class="form-group" data-service-field="cyberServices">
+                <label>Deadline</label>
+                <input type="date" />
+              </div>
+              <div class="form-group full" data-service-field="cyberServices">
+                <label>Additional Instructions</label>
+                <textarea placeholder="Any details regarding formatting, scanning or online registration support"></textarea>
+              </div>
+
+              <div class="form-group full">
+                <label>Upload Artwork / Manuscript / Reference File</label>
+                <div class="upload-box">
+                  <p>Drop your files here or click to upload</p>
+                  <small>Accepted: PDF, JPG, PNG, DOCX, PPTX</small><br />
+                  <small>Maximum upload size: 25MB per file</small>
+                </div>
+              </div>
+
+              <div class="form-group full">
+                <button type="button" class="btn btn-primary btn-full">Submit Quote Request</button>
+              </div>
+            </div>
+          </form>
+        </div>
+
+        <aside class="summary-box">
+          <div class="mini">Quotation summary</div>
+          <h3 style="margin-top:8px;">Service: <span id="selectedServiceFields">Book Publishing</span></h3>
+          <ul>
+            <li><span>Estimated response time</span><strong>24 hours</strong></li>
+            <li><span>Rush service</span><strong>Available</strong></li>
+            <li><span>Payment option</span><strong>M-Pesa / Cash</strong></li>
+            <li><span>Production status</span><strong>Queued</strong></li>
+          </ul>
+          <div class="form-note">Need a custom estimate? Our team reviews every request and responds with a detailed quotation tailored to your needs.</div>
+        </aside>
+      </div>
+    </main>
+
+    <nav class="mobile-nav" aria-label="Mobile navigation">
+      <a href="index.html">Home</a>
+      <a href="quote.html">Quote</a>
+      <a href="track-order.html">Track</a>
+      <a href="admin-login.html">Login</a>
+    </nav>
+
+    <script src="script.js"></script>
+  </body>
+</html>

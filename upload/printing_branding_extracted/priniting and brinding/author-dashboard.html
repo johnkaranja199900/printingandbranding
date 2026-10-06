@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Author Dashboard | Print & Publish Co.</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="site-header"><div class="container header-inner"><a href="index.html" class="brand"><div class="logo-mark">P</div><div class="brand-copy"><strong>Print & Publish Co.</strong><small>Author portal</small></div></a><nav class="main-nav"><a href="index.html">Home</a><a href="books.html">Books</a><a href="publishing.html">Publishing</a><a href="quote.html">Support</a></nav><div class="nav-actions"><button class="btn btn-primary">Submit New Manuscript</button></div></div></header>
+    <main class="section">
+      <div class="container">
+        <div class="section-header"><div class="eyebrow">Welcome</div><h2>Welcome, Faith Wanjiku</h2></div>
+        <div class="grid-4">
+          <div class="info-panel"><h3>My Books</h3><p>3 books under active publishing or review</p><button class="btn btn-light btn-full">View Books</button></div>
+          <div class="info-panel"><h3>Manuscripts</h3><p>2 draft manuscripts in progress</p><button class="btn btn-light btn-full">Open Files</button></div>
+          <div class="info-panel"><h3>Submitted Files</h3><p>5 documents uploaded for review</p><button class="btn btn-light btn-full">Manage Uploads</button></div>
+          <div class="info-panel"><h3>Book Covers</h3><p>2 approved covers ready for publishing</p><button class="btn btn-light btn-full">View Covers</button></div>
+        </div>
+
+        <div class="info-panel" style="margin-top: 28px;">
+          <h3>Submit New Manuscript</h3>
+          <div class="form-grid">
+            <div class="form-group"><label>Book Title</label><input type="text" placeholder="The Last Chapter" /></div>
+            <div class="form-group"><label>Author Name</label><input type="text" placeholder="Faith Wanjiku" /></div>
+            <div class="form-group"><label>Genre</label><input type="text" placeholder="Fiction" /></div>
+            <div class="form-group"><label>Manuscript File</label><input type="file" /></div>
+            <div class="form-group full"><label>Description</label><textarea placeholder="Provide a short description of the manuscript"></textarea></div>
+            <div class="form-group full"><label>Additional Notes</label><textarea placeholder="Add details or special requirements"></textarea></div>
+            <div class="form-group full"><button class="btn btn-primary">Submit Manuscript</button></div>
+          </div>
+        </div>
+
+        <div class="info-panel" style="margin-top: 28px;">
+          <h3>Publishing Status</h3>
+          <div class="status-timeline">
+            <div class="step">Submitted</div>
+            <div class="step">Under Review</div>
+            <div class="step">Editing</div>
+            <div class="step">Formatting</div>
+            <div class="step">Cover Design</div>
+            <div class="step active">Review Required</div>
+            <div class="step">Final Version</div>
+            <div class="step">Published</div>
+          </div>
+          <p style="margin-top:18px;">Once a book reaches the Final Version stage, the final manuscript can be retained for future use and reprinting.</p>
+        </div>
+      </div>
+    </main>
+    <nav class="mobile-nav"><a href="index.html">Home</a><a href="quote.html">Quote</a><a href="track-order.html">Track</a><a href="admin-login.html">Login</a></nav>
+    <script src="script.js"></script>
+  </body>
+</html>

@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Customer Dashboard | Print & Publish Co.</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body class="customer-shell">
+    <div class="customer-layout">
+      <aside class="customer-sidebar">
+        <div class="brand">
+          <div class="logo-mark">P</div>
+          <div class="brand-copy"><strong>Print & Publish</strong><small>Customer Portal</small></div>
+        </div>
+        <nav class="customer-nav" aria-label="Customer menu">
+          <a href="customer-dashboard.html" class="active">Dashboard</a>
+          <a href="customer-orders.html">My Orders</a>
+          <a href="customer-quotations.html">My Quotations</a>
+          <a href="customer-invoices.html">My Invoices</a>
+          <a href="customer-payments.html">Payments</a>
+          <a href="customer-books.html">My Books</a>
+          <a href="customer-manuscripts.html">My Manuscripts</a>
+          <a href="customer-files.html">My Files</a>
+          <a href="customer-messages.html">Messages</a>
+          <a href="customer-notifications.html">Notifications</a>
+          <a href="customer-profile.html">Profile</a>
+          <a href="customer-support.html">Support</a>
+          <a href="index.html">Logout</a>
+        </nav>
+      </aside>
+
+      <main class="customer-main">
+        <div class="section-header">
+          <div class="eyebrow">Customer portal</div>
+          <h2>Welcome, Customer</h2>
+        </div>
+
+        <div class="stats-grid">
+          <div class="stat-card">
+            <div class="kicker">Active Orders</div>
+            <strong>3</strong>
+          </div>
+          <div class="stat-card">
+            <div class="kicker">Pending Quotes</div>
+            <strong>2</strong>
+          </div>
+          <div class="stat-card">
+            <div class="kicker">Amount Due</div>
+            <strong>KES 12,500</strong>
+          </div>
+          <div class="stat-card">
+            <div class="kicker">Completed Orders</div>
+            <strong>18</strong>
+          </div>
+        </div>
+
+        <div class="two-col">
+          <div class="panel">
+            <div class="section-header"><div class="eyebrow">Overview</div><h3>Recent Orders</h3></div>
+            <div class="list-rows">
+              <div class="list-item"><span>#ORD-000123 · Book Printing</span><span class="status-pill status-production">In Production</span></div>
+              <div class="list-item"><span>#ORD-000145 · Vehicle Branding</span><span class="status-pill status-complete">Completed</span></div>
+              <div class="list-item"><span>#ORD-000180 · Digital Printing</span><span class="status-pill status-pending">Queued</span></div>
+            </div>
+          </div>
+
+          <div class="panel">
+            <div class="section-header"><div class="eyebrow">Quotes</div><h3>Recent Quotes</h3></div>
+            <div class="list-rows">
+              <div class="list-item"><span>#QT-00124 · Book Printing</span><span class="status-pill status-quote">Pending</span></div>
+              <div class="list-item"><span>#QT-00118 · Branding</span><span class="status-pill status-quote">Accepted</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="two-col" style="margin-top: 22px;">
+          <div class="panel">
+            <div class="section-header"><div class="eyebrow">Communication</div><h3>Recent Messages</h3></div>
+            <div class="list-rows">
+              <div class="list-item"><span>Production update on #ORD-000123</span><span>Today</span></div>
+              <div class="list-item"><span>Quotation approved for #QT-00118</span><span>Yesterday</span></div>
+            </div>
+          </div>
+
+          <div class="panel">
+            <div class="section-header"><div class="eyebrow">Alerts</div><h3>Notifications</h3></div>
+            <div class="list-rows">
+              <div class="list-item"><span>Payment reminder</span><span>Unread</span></div>
+              <div class="list-item"><span>Proof ready for approval</span><span>Unread</span></div>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+    <nav class="mobile-nav"><a href="customer-dashboard.html">Dashboard</a><a href="customer-orders.html">Orders</a><a href="customer-quotations.html">Quotes</a><a href="customer-profile.html">Profile</a></nav>
+    <script src="script.js"></script>
+  </body>
+</html>

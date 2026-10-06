@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Track Order | Print & Publish Co.</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="site-header"><div class="container header-inner"><a href="index.html" class="brand"><div class="logo-mark">P</div><div class="brand-copy"><strong>Print & Publish Co.</strong><small>Publishing • Printing • Branding</small></div></a><nav class="main-nav"><a href="index.html">Home</a><a href="publishing.html">Publishing</a><a href="books.html">Books</a><a href="printing.html">Printing Services</a><a href="branding.html">Branding</a><a href="cyber.html">Cyber Services</a><a href="portfolio.html">Portfolio</a><a href="quote.html">Request a Quote</a><a href="contact.html">Contact</a><a href="admin-login.html">Login</a></nav><div class="nav-actions"><a href="quote.html" class="btn btn-primary">Request a Quote</a></div></div></header>
+    <section class="page-hero"><div class="container"><div><div class="breadcrumbs">Home / Track Order</div><h1>Track Your Order</h1></div><a href="contact.html" class="btn btn-light">Contact Us</a></div></section>
+    <main class="section">
+      <div class="container">
+        <div class="form-card" style="max-width: 720px; margin: 0 auto;">
+          <div class="section-header"><div class="eyebrow">Order tracking</div><h2>Enter your order reference</h2></div>
+          <div class="form-group">
+            <label>Order / Reference Number</label>
+            <input type="text" value="ORD-000123" />
+          </div>
+          <div style="margin-top: 16px;">
+            <button class="btn btn-primary">Track Order</button>
+          </div>
+        </div>
+
+        <div class="info-panel" style="margin-top: 30px;">
+          <div class="section-header"><div class="eyebrow">Current status</div><h2>Order #ORD-000123</h2></div>
+          <div class="grid-4">
+            <div><strong>Customer Name</strong><p>Jane Njeri</p></div>
+            <div><strong>Service</strong><p>Book Printing</p></div>
+            <div><strong>Order Date</strong><p>2026-09-20</p></div>
+            <div><strong>Expected Completion</strong><p>2026-09-30</p></div>
+          </div>
+          <div class="status-timeline" style="margin-top: 24px;">
+            <div class="step">Quote Requested</div>
+            <div class="step">Quote Prepared</div>
+            <div class="step">Quote Sent</div>
+            <div class="step">Awaiting Confirmation</div>
+            <div class="step active">Queued</div>
+            <div class="step">In Production</div>
+            <div class="step">Quality Check</div>
+            <div class="step">Completed</div>
+          </div>
+          <div style="margin-top: 20px; display:flex; flex-wrap:wrap; gap:12px;">
+            <span class="status-pill status-production">Current Status: Queued</span>
+            <span class="status-pill status-pending">Amount Due: KES 18,500</span>
+            <span class="status-pill status-paid">Payment Status: Partial</span>
+          </div>
+          <div style="margin-top: 24px; display:flex; flex-wrap:wrap; gap:10px;">
+            <button class="btn btn-primary">View Quote</button>
+            <button class="btn btn-light">Download Quote</button>
+            <button class="btn btn-light">View Invoice</button>
+            <button class="btn btn-light">Make Payment</button>
+          </div>
+        </div>
+      </div>
+    </main>
+    <nav class="mobile-nav"><a href="index.html">Home</a><a href="quote.html">Quote</a><a href="track-order.html">Track</a><a href="admin-login.html">Login</a></nav>
+    <script src="script.js"></script>
+  </body>
+</html>

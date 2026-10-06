@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Quotations | Admin</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="admin-layout">
+      <aside class="sidebar">
+        <div class="brand"><div class="logo-mark">P</div><div class="brand-copy"><strong>Print & Publish</strong><small>Admin</small></div></div>
+        <div class="nav-group"><div class="nav-title">Main</div><a href="admin-dashboard.html">Dashboard</a><a href="admin-orders.html">Orders</a><a href="admin-quotations.html" class="active">Quotations</a><a href="admin-sales.html">Sales</a><a href="admin-inventory.html">Inventory</a><a href="admin-publishing.html">Publishing</a><a href="admin-portfolio.html">Portfolio</a><a href="admin-notifications.html">Notifications</a><a href="admin-reports.html">Reports</a><a href="admin-staff.html">Users & Staff</a></div>
+      </aside>
+      <main class="admin-main">
+        <div class="topbar-admin"><div><h2 style="margin:0;">Quotation Management</h2></div><div class="search-wrap"><input type="text" placeholder="Search quote" /><span class="icon">⌕</span></div></div>
+        <div class="form-card">
+          <div class="section-header"><div class="eyebrow">Create quotation</div><h2>Client quotation</h2></div>
+          <div class="form-grid">
+            <div class="form-group"><label>Customer</label><input type="text" value="Jane Njeri" /></div>
+            <div class="form-group"><label>Service</label><input type="text" value="Book Printing" /></div>
+            <div class="form-group full"><label>Description</label><textarea>500 copies of the training manual, full-colour interior and hardcover cover.</textarea></div>
+            <div class="form-group"><label>Quantity</label><input type="text" value="500" /></div>
+            <div class="form-group"><label>Unit Price</label><input type="text" value="KES 18,500" /></div>
+            <div class="form-group"><label>Discount</label><input type="text" value="KES 0" /></div>
+            <div class="form-group"><label>Tax</label><input type="text" value="KES 2,775" /></div>
+            <div class="form-group"><label>Additional Charges</label><input type="text" value="KES 1,200" /></div>
+            <div class="form-group full"><label>Total</label><input type="text" value="KES 22,475" /></div>
+            <div class="form-group full"><button class="btn btn-primary">Save Draft</button> <button class="btn btn-light">Preview</button> <button class="btn btn-light">Send to Customer</button> <button class="btn btn-light">Mark Accepted</button></div>
+          </div>
+        </div>
+      </main>
+    </div>
+    <script src="script.js"></script>
+  </body>
+</html>

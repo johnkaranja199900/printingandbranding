@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>All Orders | Admin</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="admin-layout">
+      <aside class="sidebar">
+        <div class="brand"><div class="logo-mark">P</div><div class="brand-copy"><strong>Print & Publish</strong><small>Admin</small></div></div>
+        <div class="nav-group">
+          <div class="nav-title">Main</div>
+          <a href="admin-dashboard.html">Dashboard</a>
+          <a href="admin-orders.html" class="active">Orders</a>
+          <a href="admin-quotations.html">Quotations</a>
+          <a href="admin-sales.html">Sales</a>
+          <a href="admin-inventory.html">Inventory</a>
+          <a href="admin-publishing.html">Publishing</a>
+          <a href="admin-portfolio.html">Portfolio</a>
+          <a href="admin-notifications.html">Notifications</a>
+          <a href="admin-reports.html">Reports</a>
+          <a href="admin-staff.html">Users & Staff</a>
+        </div>
+      </aside>
+      <main class="admin-main">
+        <div class="topbar-admin">
+          <div><h2 style="margin:0;">All Orders</h2></div>
+          <div class="search-wrap"><input type="text" placeholder="Search orders" /><span class="icon">⌕</span></div>
+        </div>
+        <div class="chart-card" style="margin-bottom: 18px;">
+          <div class="filter-row">
+            <button class="filter-btn active" data-filter>Date</button>
+            <button class="filter-btn" data-filter>Service</button>
+            <button class="filter-btn" data-filter>Status</button>
+            <button class="filter-btn" data-filter>Customer</button>
+          </div>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Order Number</th>
+                <th>Customer</th>
+                <th>Service</th>
+                <th>Description</th>
+                <th>Date</th>
+                <th>Deadline</th>
+                <th>Status</th>
+                <th>Amount</th>
+                <th>Paid</th>
+                <th>Balance</th>
+                <th>Payment Status</th>
+                <th>Assigned Staff</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>#ORD-000123</td>
+                <td>Jane Njeri</td>
+                <td>Book Printing</td>
+                <td>Training Manual Set</td>
+                <td>2026-09-20</td>
+                <td>2026-09-30</td>
+                <td><span class="status-pill status-production">Queued</span></td>
+                <td>KES 18,500</td>
+                <td>KES 8,000</td>
+                <td>KES 10,500</td>
+                <td><span class="status-pill status-pending">Partial</span></td>
+                <td>Mary</td>
+                <td><button class="action-pill">View</button></td>
+              </tr>
+              <tr>
+                <td>#ORD-000145</td>
+                <td>ABC Corp</td>
+                <td>Branding</td>
+                <td>Vehicle Wrap</td>
+                <td>2026-09-18</td>
+                <td>2026-09-26</td>
+                <td><span class="status-pill status-complete">Completed</span></td>
+                <td>KES 95,000</td>
+                <td>KES 95,000</td>
+                <td>KES 0</td>
+                <td><span class="status-pill status-paid">Paid</span></td>
+                <td>Daniel</td>
+                <td><button class="action-pill">View</button></td>
+              </tr>
+              <tr>
+                <td>#ORD-000180</td>
+                <td>Kenya School</td>
+                <td>Digital Printing</td>
+                <td>Certificates and reports</td>
+                <td>2026-09-23</td>
+                <td>2026-09-27</td>
+                <td><span class="status-pill status-production">In Production</span></td>
+                <td>KES 12,250</td>
+                <td>KES 12,250</td>
+                <td>KES 0</td>
+                <td><span class="status-pill status-paid">Paid</span></td>
+                <td>Grace</td>
+                <td><button class="action-pill">View</button></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </main>
+    </div>
+    <script src="script.js"></script>
+  </body>
+</html>

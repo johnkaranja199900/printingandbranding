@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Portfolio Management | Admin</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="admin-layout">
+      <aside class="sidebar">
+        <div class="brand"><div class="logo-mark">P</div><div class="brand-copy"><strong>Print & Publish</strong><small>Admin</small></div></div>
+        <div class="nav-group"><div class="nav-title">Main</div><a href="admin-dashboard.html">Dashboard</a><a href="admin-orders.html">Orders</a><a href="admin-quotations.html">Quotations</a><a href="admin-sales.html">Sales</a><a href="admin-inventory.html">Inventory</a><a href="admin-publishing.html">Publishing</a><a href="admin-portfolio.html" class="active">Portfolio</a><a href="admin-notifications.html">Notifications</a><a href="admin-reports.html">Reports</a><a href="admin-staff.html">Users & Staff</a></div>
+      </aside>
+      <main class="admin-main">
+        <div class="topbar-admin"><div><h2 style="margin:0;">Portfolio</h2></div><button class="btn btn-primary">Add Project</button></div>
+        <div class="portfolio-grid">
+          <article class="portfolio-card"><img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=900&q=80" alt="Portfolio" /><div class="portfolio-overlay"><div class="portfolio-caption"><strong>Book Launch</strong><div>Books</div></div></div></article>
+          <article class="portfolio-card"><img src="https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&w=900&q=80" alt="Portfolio" /><div class="portfolio-overlay"><div class="portfolio-caption"><strong>Brand Activation</strong><div>Branding</div></div></div></article>
+          <article class="portfolio-card"><img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=900&q=80" alt="Portfolio" /><div class="portfolio-overlay"><div class="portfolio-caption"><strong>Outdoor Banner</strong><div>Banners</div></div></div></article>
+        </div>
+      </main>
+    </div>
+    <script src="script.js"></script>
+  </body>
+</html>

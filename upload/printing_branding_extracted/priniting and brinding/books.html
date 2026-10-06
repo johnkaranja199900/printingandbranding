@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Books Catalogue | Print & Publish Co.</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container header-inner">
+        <a href="index.html" class="brand"><div class="logo-mark">P</div><div class="brand-copy"><strong>Print & Publish Co.</strong><small>Publishing • Printing • Branding</small></div></a>
+        <nav class="main-nav"><a href="index.html">Home</a><a href="publishing.html">Publishing</a><a href="books.html">Books</a><a href="printing.html">Printing Services</a><a href="branding.html">Branding</a><a href="cyber.html">Cyber Services</a><a href="portfolio.html">Portfolio</a><a href="quote.html">Request a Quote</a><a href="contact.html">Contact</a><a href="admin-login.html">Login</a></nav>
+        <div class="nav-actions"><a href="quote.html" class="btn btn-primary">Request a Quote</a></div>
+      </div>
+    </header>
+
+    <section class="page-hero">
+      <div class="container">
+        <div>
+          <div class="breadcrumbs">Home / Books</div>
+          <h1>Books Catalogue</h1>
+        </div>
+        <a href="publishing.html" class="btn btn-light">Publish Your Book</a>
+      </div>
+    </section>
+
+    <main class="section">
+      <div class="container">
+        <div class="filter-row">
+          <button class="filter-btn active" data-filter>All</button>
+          <button class="filter-btn" data-filter>Fiction</button>
+          <button class="filter-btn" data-filter>Education</button>
+          <button class="filter-btn" data-filter>Church</button>
+          <button class="filter-btn" data-filter>Business</button>
+        </div>
+
+        <div class="grid-3">
+          <article class="book-card">
+            <div class="book-cover">COVER</div>
+            <div class="book-meta">
+              <div class="meta-row"><span>Author</span><span>Faith Wanjiku</span></div>
+              <h3>Voices of the Hills</h3>
+              <div class="meta-row"><span>Publisher</span><span>Print & Publish</span></div>
+              <div class="meta-row"><span>Genre</span><span>Fiction</span></div>
+              <p>A collection of warm, reflective stories about hope, heritage and resilience.</p>
+              <div class="meta-row"><span>Publication Status</span><span class="badge">Published</span></div>
+              <div style="margin-top: 16px;"><a href="book-detail.html" class="btn btn-light btn-full">View Book</a></div>
+            </div>
+          </article>
+
+          <article class="book-card">
+            <div class="book-cover" style="background:linear-gradient(135deg,#fef3c7,#f5d98a);">COVER</div>
+            <div class="book-meta">
+              <div class="meta-row"><span>Author</span><span>Ben Otieno</span></div>
+              <h3>Business Beyond Borders</h3>
+              <div class="meta-row"><span>Publisher</span><span>Print & Publish</span></div>
+              <div class="meta-row"><span>Genre</span><span>Business</span></div>
+              <p>Practical strategies and leadership guidance for modern entrepreneurs and teams.</p>
+              <div class="meta-row"><span>Publication Status</span><span class="badge">Published</span></div>
+              <div style="margin-top: 16px;"><a href="book-detail.html" class="btn btn-light btn-full">View Book</a></div>
+            </div>
+          </article>
+
+          <article class="book-card">
+            <div class="book-cover" style="background:linear-gradient(135deg,#e0f2fe,#bfdbfe);">COVER</div>
+            <div class="book-meta">
+              <div class="meta-row"><span>Author</span><span>Mary Karanja</span></div>
+              <h3>Learning Through Practice</h3>
+              <div class="meta-row"><span>Publisher</span><span>Print & Publish</span></div>
+              <div class="meta-row"><span>Genre</span><span>Education</span></div>
+              <p>A teacher-friendly guide that translates academic theory into classroom action.</p>
+              <div class="meta-row"><span>Publication Status</span><span class="badge">Published</span></div>
+              <div style="margin-top: 16px;"><a href="book-detail.html" class="btn btn-light btn-full">View Book</a></div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </main>
+
+    <footer style="background:#0f172a; color:#fff; padding: 54px 0 90px;">
+      <div class="container">
+        <div class="grid-4">
+          <div><div class="brand" style="margin-bottom:12px;"><div class="logo-mark">P</div><div class="brand-copy"><strong>Print & Publish Co.</strong></div></div><p style="color: rgba(255,255,255,0.72);">Books, publishing support, and creative production for modern readers and organizations.</p></div>
+          <div><h3 style="color:#fff;">Explore</h3><ul class="service-list" style="color: rgba(255,255,255,0.72);"><li>Publishing</li><li>Printing</li><li>Branding</li><li>Books</li></ul></div>
+          <div><h3 style="color:#fff;">Support</h3><ul class="service-list" style="color: rgba(255,255,255,0.72);"><li>Request Quote</li><li>Track Order</li><li>Contact</li><li>Login</li></ul></div>
+          <div><h3 style="color:#fff;">Follow</h3><ul class="service-list" style="color: rgba(255,255,255,0.72);"><li>Instagram</li><li>Facebook</li><li>LinkedIn</li><li>WhatsApp</li></ul></div>
+        </div>
+      </div>
+    </footer>
+    <nav class="mobile-nav"><a href="index.html">Home</a><a href="quote.html">Quote</a><a href="track-order.html">Track</a><a href="login.html">Login</a></nav>
+    <script src="script.js"></script>
+  </body>
+</html>

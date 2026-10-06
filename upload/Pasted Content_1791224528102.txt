@@ -1,0 +1,4617 @@
+You are a Principal Software Architect, Senior Laravel Engineer, Database Architect, Security Architect, DevSecOps Engineer, UI/UX Engineer, QA Engineer, and Systems Integration Engineer.
+
+Build a complete production ready web based Printing, Publishing, Branding and Cyber Services Management System.
+
+The existing project contains static HTML/CSS/JavaScript screens. Treat the existing UI as the visual and functional reference, but DO NOT blindly convert the static HTML into Blade templates.
+
+The final system must be a real working Laravel application backed by MariaDB.
+
+The application should be designed primarily for mobile users but implemented as a responsive web application that can later be installed or packaged as a Progressive Web App.
+
+The system must be secure, maintainable, scalable, auditable and production ready.
+
+==================================================
+1. TECHNOLOGY STACK
+==================================================
+
+Backend:
+
+Laravel latest stable version compatible with the selected PHP version.
+
+PHP 8.3 or newer stable version compatible with the selected Laravel release.
+
+Database:
+
+MariaDB.
+
+Use InnoDB for transactional tables.
+
+Use utf8mb4.
+
+Use foreign keys.
+
+Use appropriate indexes.
+
+Use database transactions for all multi table financial and order operations.
+
+Frontend:
+
+Laravel Blade.
+
+Modern responsive HTML5.
+
+CSS.
+
+JavaScript.
+
+Use Alpine.js where lightweight interactivity is appropriate.
+
+Use Laravel Vite.
+
+Use Tailwind CSS only if it does not conflict with the existing design. Otherwise preserve and refactor the supplied CSS design system.
+
+Do not introduce unnecessary frontend complexity.
+
+Authentication:
+
+Laravel authentication using Laravel Fortify or an equivalent Laravel native authentication solution.
+
+Authorization:
+
+Role and permission based authorization.
+
+Recommended roles:
+
+super_admin
+admin
+manager
+sales
+production
+designer
+publisher
+inventory_manager
+finance
+customer
+author
+staff
+
+Do not implement authorization using scattered if statements.
+
+Use Policies, Gates and permissions.
+
+Queue:
+
+Laravel queues.
+
+Use database queue initially.
+
+Architecture must allow Redis to be introduced later.
+
+Cache:
+
+Laravel cache.
+
+Use database or file cache initially.
+
+Architecture must support Redis.
+
+Scheduler:
+
+Laravel Scheduler.
+
+Storage:
+
+Laravel Filesystem.
+
+Use local private storage during development.
+
+Production must support S3 compatible private object storage.
+
+Notifications:
+
+Email.
+
+SMS.
+
+WhatsApp.
+
+In app notifications.
+
+M-Pesa.
+
+Payments:
+
+M-Pesa Daraja API architecture.
+
+PDF:
+
+Server side PDF generation for quotations, invoices, receipts and reports.
+
+Logging:
+
+Laravel logging.
+
+Security audit logging.
+
+Error monitoring ready.
+
+Deployment:
+
+Linux production server.
+
+Nginx.
+
+PHP-FPM.
+
+MariaDB.
+
+SSL.
+
+Queue worker.
+
+Cron.
+
+==================================================
+2. SYSTEM OBJECTIVE
+==================================================
+
+Build a complete business management platform for a company offering:
+
+Printing services.
+
+Book printing.
+
+Publishing.
+
+Book production.
+
+Branding.
+
+Graphic design.
+
+Cyber services.
+
+Document processing.
+
+Scanning.
+
+Typing.
+
+PDF conversion.
+
+Online application assistance.
+
+Other configurable services.
+
+The system must support the complete business lifecycle:
+
+Customer discovery.
+
+Service selection.
+
+Quote request.
+
+File upload.
+
+Quote preparation.
+
+Quote approval.
+
+Order creation.
+
+Deposit request.
+
+Payment.
+
+Production.
+
+Quality control.
+
+Completion.
+
+Customer notification.
+
+Delivery or collection.
+
+Final payment.
+
+Invoice.
+
+Receipt.
+
+Order completion.
+
+Historical reporting.
+
+==================================================
+3. EXISTING UI TO IMPLEMENT
+==================================================
+
+The supplied project contains these frontend areas:
+
+Home.
+
+Publishing.
+
+Books.
+
+Printing Services.
+
+Branding.
+
+Cyber Services.
+
+Portfolio.
+
+Request a Quote.
+
+Contact.
+
+Track Order.
+
+Customer Dashboard.
+
+Customer Quotations.
+
+Author Dashboard.
+
+Admin Dashboard.
+
+Admin Orders.
+
+Admin Quotations.
+
+Admin Publishing.
+
+Admin Portfolio.
+
+Admin Inventory.
+
+Admin Sales.
+
+Admin Reports.
+
+Admin Staff.
+
+Admin Notifications.
+
+Admin Login.
+
+These screens must become real Laravel application pages.
+
+Preserve the visual language of the existing design:
+
+Dark navy.
+
+Gold accent.
+
+White cards.
+
+Rounded components.
+
+Responsive layouts.
+
+Mobile navigation.
+
+Dashboard cards.
+
+Status badges.
+
+Tables.
+
+Forms.
+
+Timeline components.
+
+Quote summary panels.
+
+Portfolio cards.
+
+Service cards.
+
+Do not retain fake static data.
+
+Every displayed business value must eventually come from MariaDB or a controlled configuration source.
+
+==================================================
+4. APPLICATION ARCHITECTURE
+==================================================
+
+Use a modular Laravel architecture.
+
+Recommended domain modules:
+
+Authentication.
+
+Users.
+
+Customers.
+
+Authors.
+
+Staff.
+
+Services.
+
+Service Categories.
+
+Service Requests.
+
+Quotes.
+
+Quote Items.
+
+Orders.
+
+Order Items.
+
+Production.
+
+Publishing.
+
+Books.
+
+Authors.
+
+Inventory.
+
+Products.
+
+Payments.
+
+Invoices.
+
+Receipts.
+
+Notifications.
+
+SMS.
+
+WhatsApp.
+
+M-Pesa.
+
+Portfolio.
+
+Contacts.
+
+Reports.
+
+Audit Logs.
+
+System Settings.
+
+Files.
+
+==================================================
+5. DATABASE DESIGN
+==================================================
+
+Create proper Laravel migrations.
+
+Do not use one massive table.
+
+Use normalized relational design.
+
+Every table must contain:
+
+id.
+
+created_at.
+
+updated_at.
+
+Where appropriate:
+
+deleted_at.
+
+created_by.
+
+updated_by.
+
+deleted_by.
+
+Do not add these fields blindly to every table where they are not appropriate.
+
+==================================================
+6. USERS
+==================================================
+
+Create users table.
+
+Fields:
+
+id
+name
+email
+phone
+password
+status
+email_verified_at
+phone_verified_at
+last_login_at
+last_login_ip
+remember_token
+created_at
+updated_at
+deleted_at
+
+Status:
+
+active
+inactive
+suspended
+pending
+
+Never store passwords manually.
+
+Use Laravel password hashing.
+
+Never store plain text passwords.
+
+==================================================
+7. ROLES AND PERMISSIONS
+==================================================
+
+Implement RBAC.
+
+Tables:
+
+roles
+
+permissions
+
+role_user
+
+permission_role
+
+Permissions should be granular.
+
+Examples:
+
+users.view
+
+users.create
+
+users.update
+
+users.delete
+
+orders.view
+
+orders.create
+
+orders.update
+
+orders.cancel
+
+quotes.view
+
+quotes.create
+
+quotes.send
+
+quotes.approve
+
+payments.view
+
+payments.create
+
+payments.refund
+
+inventory.view
+
+inventory.manage
+
+reports.view
+
+staff.manage
+
+settings.manage
+
+audit.view
+
+Do not rely only on role names.
+
+==================================================
+8. CUSTOMERS
+==================================================
+
+Create customers table.
+
+Fields:
+
+id
+user_id nullable
+customer_number
+customer_type
+business_name nullable
+first_name
+last_name
+phone
+email nullable
+address nullable
+city nullable
+county nullable
+tax_number nullable
+notes nullable
+status
+created_at
+updated_at
+deleted_at
+
+Customer types:
+
+individual
+
+business
+
+organization
+
+institution
+
+A customer may have multiple quotes.
+
+A customer may have multiple orders.
+
+A customer may have multiple payments.
+
+==================================================
+9. AUTHORS
+==================================================
+
+Create authors table.
+
+Fields:
+
+id
+user_id nullable
+author_number
+first_name
+last_name
+pen_name nullable
+email nullable
+phone
+bio nullable
+website nullable
+status
+created_at
+updated_at
+deleted_at
+
+An author may own multiple books.
+
+==================================================
+10. SERVICES
+==================================================
+
+Create service_categories.
+
+Examples:
+
+Printing.
+
+Publishing.
+
+Branding.
+
+Cyber Services.
+
+Create services table.
+
+Fields:
+
+id
+service_category_id
+name
+slug
+description
+pricing_type
+base_price nullable
+unit_name nullable
+minimum_quantity nullable
+estimated_days nullable
+requires_file
+requires_approval
+is_active
+sort_order
+created_at
+updated_at
+
+Pricing types:
+
+fixed
+
+per_unit
+
+per_page
+
+custom_quote
+
+formula
+
+==================================================
+11. SERVICE SPECIFICATIONS
+==================================================
+
+Different services require different information.
+
+Do not create hundreds of nullable columns in services.
+
+Implement flexible service metadata.
+
+Create service_fields.
+
+Fields:
+
+id
+service_id
+field_key
+label
+field_type
+is_required
+validation_rules nullable
+options_json nullable
+sort_order
+is_active
+
+Field types:
+
+text
+
+textarea
+
+number
+
+decimal
+
+date
+
+select
+
+radio
+
+checkbox
+
+file
+
+This allows administrators to create configurable service forms.
+
+==================================================
+12. QUOTE REQUESTS
+==================================================
+
+Create quote_requests.
+
+Fields:
+
+id
+request_number
+customer_id
+service_id nullable
+subject
+description
+status
+priority
+requested_deadline nullable
+estimated_budget nullable
+assigned_to nullable
+created_at
+updated_at
+
+Statuses:
+
+draft
+
+submitted
+
+under_review
+
+pricing
+
+quoted
+
+approved
+
+rejected
+
+cancelled
+
+expired
+
+==================================================
+13. QUOTE REQUEST DATA
+==================================================
+
+Create quote_request_values.
+
+Fields:
+
+id
+quote_request_id
+service_field_id
+value_text nullable
+value_number nullable
+value_date nullable
+value_json nullable
+
+Never blindly trust client supplied field definitions.
+
+Validate values against the server side service field configuration.
+
+==================================================
+14. FILE MANAGEMENT
+==================================================
+
+Create files table.
+
+Fields:
+
+id
+uuid
+disk
+path
+original_name
+stored_name
+mime_type
+extension
+size
+checksum
+uploaded_by
+visibility
+virus_scan_status
+created_at
+updated_at
+
+Never expose private storage paths directly.
+
+Use signed routes or controlled download controllers.
+
+File security requirements:
+
+Validate MIME type.
+
+Validate extension.
+
+Validate file size.
+
+Generate random stored filenames.
+
+Never trust original filenames.
+
+Never execute uploaded files.
+
+Store uploads outside public directory.
+
+Perform antivirus scanning where available.
+
+Calculate SHA256 checksum.
+
+Prevent path traversal.
+
+Use authorization before downloads.
+
+==================================================
+15. QUOTATIONS
+==================================================
+
+Create quotations.
+
+Fields:
+
+id
+quote_number
+quote_request_id
+customer_id
+status
+currency
+subtotal
+discount
+tax
+total
+valid_until
+notes
+terms
+created_by
+approved_at
+sent_at
+created_at
+updated_at
+
+Quotation statuses:
+
+draft
+
+pending_review
+
+approved
+
+sent
+
+customer_viewed
+
+customer_accepted
+
+customer_rejected
+
+expired
+
+cancelled
+
+==================================================
+16. QUOTE ITEMS
+==================================================
+
+Create quotation_items.
+
+Fields:
+
+id
+quotation_id
+service_id nullable
+description
+quantity
+unit_price
+discount
+tax_rate
+line_total
+sort_order
+
+Calculate totals on the server.
+
+Never trust totals submitted from JavaScript.
+
+Use decimal database types.
+
+Do not use floating point for money.
+
+Recommended:
+
+DECIMAL(15,2)
+
+==================================================
+17. ORDER MANAGEMENT
+==================================================
+
+Create orders.
+
+Fields:
+
+id
+order_number
+customer_id
+quotation_id nullable
+status
+payment_status
+production_status
+subtotal
+discount
+tax
+total
+amount_paid
+amount_due
+deposit_required
+deposit_amount
+expected_completion_date
+actual_completion_date nullable
+assigned_to nullable
+notes
+created_at
+updated_at
+deleted_at
+
+Order statuses:
+
+pending
+
+confirmed
+
+awaiting_payment
+
+queued
+
+in_production
+
+quality_check
+
+ready
+
+completed
+
+cancelled
+
+refunded
+
+==================================================
+18. ORDER ITEMS
+==================================================
+
+Create order_items.
+
+Fields:
+
+id
+order_id
+service_id nullable
+description
+quantity
+unit_price
+discount
+tax_rate
+line_total
+production_notes
+status
+
+Each order may contain multiple services.
+
+==================================================
+19. ORDER STATUS HISTORY
+==================================================
+
+Create order_status_history.
+
+Fields:
+
+id
+order_id
+from_status
+to_status
+changed_by
+reason
+notes
+created_at
+
+Every important status transition must be recorded.
+
+Never silently change order status.
+
+==================================================
+20. PRODUCTION MANAGEMENT
+==================================================
+
+Create production_jobs.
+
+Fields:
+
+id
+order_id
+order_item_id
+job_number
+assigned_to
+status
+priority
+start_at
+due_at
+completed_at
+instructions
+notes
+
+Statuses:
+
+queued
+
+assigned
+
+in_progress
+
+paused
+
+quality_check
+
+rework
+
+completed
+
+cancelled
+
+Production employees must only see jobs they are authorized to access.
+
+==================================================
+21. QUALITY CONTROL
+==================================================
+
+Create quality_checks.
+
+Fields:
+
+id
+production_job_id
+checked_by
+status
+notes
+issues
+checked_at
+
+Statuses:
+
+passed
+
+failed
+
+requires_rework
+
+If failed:
+
+automatically create or reopen production work.
+
+Record the reason.
+
+==================================================
+22. BOOK PUBLISHING
+==================================================
+
+Create books.
+
+Fields:
+
+id
+author_id
+title
+subtitle nullable
+isbn nullable
+description
+genre nullable
+language
+edition nullable
+publication_status
+page_count nullable
+cover_type nullable
+paper_type nullable
+format nullable
+selling_price nullable
+publication_date nullable
+created_at
+updated_at
+
+Publishing statuses:
+
+draft
+
+manuscript_submitted
+
+editing
+
+design
+
+proofreading
+
+approved
+
+printing
+
+published
+
+archived
+
+==================================================
+23. BOOK MANUSCRIPTS
+==================================================
+
+Create manuscript_versions.
+
+Fields:
+
+id
+book_id
+version_number
+file_id
+submitted_by
+notes
+status
+created_at
+
+Never overwrite manuscript files.
+
+Every revision must be versioned.
+
+==================================================
+24. INVENTORY
+==================================================
+
+Create:
+
+inventory_items
+
+inventory_transactions
+
+suppliers
+
+purchase_orders
+
+purchase_order_items
+
+stock_adjustments
+
+Inventory items may include:
+
+paper
+
+ink
+
+binding materials
+
+covers
+
+packaging
+
+printing materials
+
+stationery
+
+other consumables
+
+inventory_transactions must support:
+
+purchase
+
+sale
+
+consumption
+
+adjustment
+
+return
+
+damage
+
+transfer
+
+Use database transactions when changing stock.
+
+Prevent negative stock unless explicitly allowed by configuration.
+
+==================================================
+25. PAYMENTS
+==================================================
+
+Create payments.
+
+Fields:
+
+id
+payment_reference
+order_id nullable
+customer_id
+payment_method
+amount
+currency
+status
+transaction_reference nullable
+provider_reference nullable
+paid_at nullable
+metadata_json nullable
+created_at
+updated_at
+
+Methods:
+
+cash
+
+mpesa
+
+bank
+
+card
+
+other
+
+Statuses:
+
+pending
+
+processing
+
+successful
+
+failed
+
+cancelled
+
+refunded
+
+==================================================
+26. M-PESA
+==================================================
+
+Implement M-Pesa using a dedicated service abstraction.
+
+Do not put M-Pesa logic inside controllers.
+
+Create:
+
+MpesaServiceInterface
+
+MpesaDarajaService
+
+MpesaPaymentService
+
+MpesaCallbackController
+
+MpesaConfiguration
+
+Support:
+
+STK Push.
+
+Callback handling.
+
+Transaction validation.
+
+Duplicate callback protection.
+
+Payment reconciliation.
+
+Logging.
+
+Timeout handling.
+
+Retry handling.
+
+Configuration through admin settings and environment variables.
+
+Never store secrets in database unless encrypted.
+
+Environment variables:
+
+MPESA_ENVIRONMENT
+
+MPESA_CONSUMER_KEY
+
+MPESA_CONSUMER_SECRET
+
+MPESA_SHORTCODE
+
+MPESA_PASSKEY
+
+MPESA_CALLBACK_URL
+
+MPESA_ACCOUNT_REFERENCE
+
+MPESA_TRANSACTION_DESCRIPTION
+
+Do not trust callback amounts blindly.
+
+Verify:
+
+merchant identifier
+
+transaction reference
+
+amount
+
+account/reference
+
+timestamp
+
+transaction uniqueness
+
+order association
+
+==================================================
+27. PAYMENT IDEMPOTENCY
+==================================================
+
+Payment operations must be idempotent.
+
+The same M-Pesa callback must never create two payments.
+
+Use unique database constraints.
+
+Example:
+
+provider_reference UNIQUE
+
+payment_reference UNIQUE
+
+Use database transactions.
+
+==================================================
+28. SMS
+==================================================
+
+Create notification abstraction.
+
+Do not hardcode a single SMS provider.
+
+Create:
+
+SmsProviderInterface
+
+SmsManager
+
+Provider implementations.
+
+Allow administrators to configure:
+
+provider
+
+API URL
+
+API key
+
+sender ID
+
+username
+
+password
+
+timeout
+
+active status
+
+Test connection.
+
+Credentials must be encrypted.
+
+Never expose API credentials to frontend JavaScript.
+
+==================================================
+29. WHATSAPP
+==================================================
+
+Implement WhatsApp using provider abstraction.
+
+Support WhatsApp Business API or compatible provider.
+
+Create:
+
+WhatsAppProviderInterface
+
+WhatsAppManager
+
+WhatsApp templates.
+
+Allow configurable message templates.
+
+Example:
+
+QUOTE_CREATED
+
+QUOTE_APPROVED
+
+ORDER_CONFIRMED
+
+PAYMENT_RECEIVED
+
+ORDER_IN_PRODUCTION
+
+ORDER_READY
+
+ORDER_COMPLETED
+
+PAYMENT_REMINDER
+
+Do not allow arbitrary unvalidated customer supplied template content to execute as system messages.
+
+==================================================
+30. EMAIL
+==================================================
+
+Implement Laravel Mail.
+
+Email templates must be configurable.
+
+Support:
+
+quote notification
+
+quote approval
+
+payment receipt
+
+invoice
+
+order confirmation
+
+order status
+
+password reset
+
+account verification
+
+staff notifications
+
+==================================================
+31. NOTIFICATION ENGINE
+==================================================
+
+Create notifications table or use Laravel notifications.
+
+Every important business event should trigger notification workflows.
+
+Examples:
+
+Quote created.
+
+Quote sent.
+
+Quote accepted.
+
+Order created.
+
+Payment received.
+
+Production started.
+
+Order ready.
+
+Order completed.
+
+Payment overdue.
+
+Use queued jobs.
+
+Never make an external SMS/WhatsApp/API call directly inside a normal HTTP request if it can be queued.
+
+==================================================
+32. AUTOMATION
+==================================================
+
+Implement Laravel Scheduler.
+
+Scheduled tasks:
+
+Expire old quotations.
+
+Find overdue payments.
+
+Send payment reminders.
+
+Send order status reminders.
+
+Retry failed notifications.
+
+Retry failed webhooks where safe.
+
+Generate scheduled reports.
+
+Clean temporary files.
+
+Remove expired temporary tokens.
+
+Detect abandoned quote requests.
+
+Reconcile pending payments.
+
+==================================================
+33. CUSTOMER PORTAL
+==================================================
+
+Customers must be able to:
+
+Register.
+
+Login.
+
+Verify account.
+
+Update profile.
+
+Request quote.
+
+Upload files.
+
+View quotations.
+
+Accept quotation.
+
+Reject quotation.
+
+View orders.
+
+Track order.
+
+View payment history.
+
+Make M-Pesa payment.
+
+Download invoices.
+
+Download receipts.
+
+Download approved quotation.
+
+View notifications.
+
+Contact company.
+
+==================================================
+34. PUBLIC ORDER TRACKING
+==================================================
+
+Allow tracking using:
+
+order number
+
+AND optionally verification token or phone/email verification.
+
+Do NOT expose sensitive customer information merely because someone knows an order number.
+
+Never expose:
+
+full phone number
+
+email
+
+address
+
+financial details
+
+internal notes
+
+staff information
+
+private files
+
+unless authenticated and authorized.
+
+==================================================
+35. ADMIN DASHBOARD
+==================================================
+
+Dashboard must display real database metrics.
+
+Examples:
+
+Total sales.
+
+Outstanding payments.
+
+Today's sales.
+
+Monthly sales.
+
+Pending quotations.
+
+Active orders.
+
+Orders in production.
+
+Completed orders.
+
+Low stock items.
+
+Unread notifications.
+
+Pending production jobs.
+
+Overdue orders.
+
+Use efficient aggregate queries.
+
+Do not retrieve thousands of records and calculate totals in PHP.
+
+Use SQL aggregation.
+
+==================================================
+36. SALES MANAGEMENT
+==================================================
+
+Admin sales screen should provide:
+
+sales overview
+
+daily sales
+
+weekly sales
+
+monthly sales
+
+sales by service
+
+sales by employee
+
+sales by payment method
+
+outstanding balances
+
+paid orders
+
+partially paid orders
+
+overdue accounts
+
+refunds
+
+Export reports.
+
+==================================================
+37. QUOTATION MANAGEMENT
+==================================================
+
+Admin quotation workflow:
+
+View request.
+
+Review files.
+
+Review service specifications.
+
+Assign staff.
+
+Calculate price.
+
+Add quote items.
+
+Apply discounts if authorized.
+
+Apply tax.
+
+Set expiry date.
+
+Generate quotation PDF.
+
+Send quotation.
+
+Customer views quotation.
+
+Customer accepts or rejects.
+
+Accepted quotation can become an order.
+
+Record every state transition.
+
+==================================================
+38. ORDER MANAGEMENT
+==================================================
+
+Admin order workflow:
+
+Quote accepted.
+
+Create order.
+
+Confirm payment requirements.
+
+Create production jobs.
+
+Assign staff.
+
+Track progress.
+
+Quality control.
+
+Mark ready.
+
+Notify customer.
+
+Complete order.
+
+Generate final invoice/receipt.
+
+Record final payment.
+
+Close order.
+
+==================================================
+39. FINANCIAL CONTROLS
+==================================================
+
+Implement strict financial controls.
+
+Never allow staff to arbitrarily modify:
+
+total
+
+amount paid
+
+amount due
+
+payment status
+
+without authorization.
+
+Every financial modification must be audited.
+
+Use immutable payment records.
+
+If a payment is wrong, create reversal/refund records.
+
+Do not delete successful payment records.
+
+==================================================
+40. AUDIT LOGGING
+==================================================
+
+Create audit_logs.
+
+Fields:
+
+id
+user_id
+action
+entity_type
+entity_id
+old_values_json
+new_values_json
+ip_address
+user_agent
+request_id
+created_at
+
+Log sensitive events:
+
+login.
+
+failed login.
+
+logout.
+
+password change.
+
+role change.
+
+permission change.
+
+quote modification.
+
+quote approval.
+
+order creation.
+
+order cancellation.
+
+payment creation.
+
+payment reversal.
+
+inventory adjustment.
+
+file access.
+
+configuration change.
+
+API credential change.
+
+==================================================
+41. SECURITY
+==================================================
+
+Apply OWASP security practices.
+
+Protect against:
+
+SQL injection.
+
+XSS.
+
+CSRF.
+
+Mass assignment.
+
+IDOR.
+
+Broken access control.
+
+Session fixation.
+
+Session hijacking.
+
+Brute force attacks.
+
+Credential stuffing.
+
+File upload attacks.
+
+Path traversal.
+
+SSRF.
+
+Webhook spoofing.
+
+Replay attacks.
+
+Sensitive data exposure.
+
+Privilege escalation.
+
+Race conditions.
+
+Duplicate payments.
+
+Do not trust frontend validation.
+
+Everything important must be validated server side.
+
+==================================================
+42. AUTHENTICATION SECURITY
+==================================================
+
+Use:
+
+strong password hashing.
+
+rate limiting.
+
+session regeneration after login.
+
+secure cookies.
+
+HttpOnly.
+
+Secure cookies in production.
+
+SameSite protection.
+
+email verification.
+
+password reset.
+
+optional 2FA for administrators.
+
+Account lockout or progressive throttling.
+
+Login audit logs.
+
+==================================================
+43. API SECURITY
+==================================================
+
+If APIs are implemented:
+
+Use Laravel Sanctum.
+
+Use token abilities.
+
+Expire/revoke tokens.
+
+Rate limit endpoints.
+
+Validate all requests.
+
+Do not expose internal IDs unnecessarily.
+
+Use UUIDs or public reference IDs for externally exposed resources where appropriate.
+
+==================================================
+44. WEBHOOK SECURITY
+==================================================
+
+All external callbacks must be:
+
+authenticated.
+
+validated.
+
+logged.
+
+idempotent.
+
+rate limited.
+
+protected against replay.
+
+Never trust request IP alone as authentication.
+
+Where provider supports signatures, validate signatures.
+
+Store raw webhook payload securely for troubleshooting.
+
+==================================================
+45. DATABASE SECURITY
+==================================================
+
+MariaDB requirements:
+
+Use utf8mb4.
+
+Use foreign keys.
+
+Use proper indexes.
+
+Use unique constraints.
+
+Use CHECK constraints where supported and appropriate.
+
+Use DECIMAL for money.
+
+Use DATETIME/TIMESTAMP consistently.
+
+Never store passwords manually.
+
+Encrypt sensitive credentials.
+
+Never store API secrets in plain text.
+
+Use least privilege database user.
+
+Application database account must not have unnecessary administrative privileges.
+
+==================================================
+46. DATABASE INDEXING
+==================================================
+
+Create indexes for:
+
+users.email
+
+users.phone
+
+customers.customer_number
+
+customers.phone
+
+quotes.quote_number
+
+orders.order_number
+
+payments.payment_reference
+
+payments.transaction_reference
+
+payments.provider_reference
+
+orders.status
+
+orders.payment_status
+
+orders.created_at
+
+quote_requests.status
+
+production_jobs.status
+
+production_jobs.assigned_to
+
+notifications.user_id
+
+audit_logs.user_id
+
+audit_logs.entity_type/entity_id
+
+Foreign keys.
+
+Do not create indexes blindly.
+
+Review query plans for major dashboard queries.
+
+==================================================
+47. CONCURRENCY
+==================================================
+
+Protect financial and inventory operations against race conditions.
+
+Use:
+
+database transactions.
+
+row locking.
+
+SELECT FOR UPDATE where required.
+
+unique constraints.
+
+idempotency keys.
+
+Example:
+
+Two simultaneous payment callbacks must not increase amount_paid twice.
+
+Two staff members updating stock simultaneously must not corrupt inventory.
+
+Two administrators approving the same quotation must not create duplicate orders.
+
+==================================================
+48. FILE STORAGE
+==================================================
+
+Create secure file service.
+
+Support:
+
+local
+
+S3
+
+S3 compatible storage
+
+Never store customer files in public storage unless intentionally public.
+
+Use UUID filenames.
+
+Maintain metadata in database.
+
+Use temporary signed URLs.
+
+Implement file download authorization.
+
+==================================================
+49. PDF DOCUMENTS
+==================================================
+
+Generate professional PDFs for:
+
+quotation
+
+invoice
+
+receipt
+
+payment statement
+
+order summary
+
+publishing agreement
+
+delivery note
+
+Use reusable Blade PDF templates.
+
+Include:
+
+company details
+
+customer details
+
+document number
+
+date
+
+items
+
+quantities
+
+prices
+
+tax
+
+discount
+
+total
+
+payment status
+
+terms
+
+authorized information
+
+==================================================
+50. REPORTING
+==================================================
+
+Implement:
+
+sales report
+
+payment report
+
+outstanding balances
+
+quotation conversion
+
+orders by status
+
+service profitability
+
+inventory report
+
+production report
+
+customer report
+
+staff performance
+
+monthly revenue
+
+daily revenue
+
+payment method analysis
+
+Export:
+
+PDF
+
+CSV
+
+Excel if required.
+
+Use server side pagination and aggregation.
+
+==================================================
+51. SEARCH
+==================================================
+
+Implement global search where useful.
+
+Search:
+
+customers
+
+orders
+
+quotes
+
+payments
+
+books
+
+authors
+
+inventory
+
+Use indexed fields.
+
+Do not use inefficient wildcard queries across every column.
+
+==================================================
+52. PAGINATION
+==================================================
+
+Never load unlimited records.
+
+Use pagination.
+
+Default:
+
+15 to 25 records.
+
+Allow controlled page sizes.
+
+Maximum page size must be enforced server side.
+
+==================================================
+53. VALIDATION
+==================================================
+
+Create Form Request classes.
+
+Examples:
+
+StoreCustomerRequest
+
+UpdateCustomerRequest
+
+StoreQuoteRequest
+
+StoreQuotationRequest
+
+ApproveQuotationRequest
+
+StoreOrderRequest
+
+StorePaymentRequest
+
+UploadFileRequest
+
+StoreBookRequest
+
+StoreInventoryItemRequest
+
+Never place complex validation inside controllers.
+
+==================================================
+54. SERVICE LAYER
+==================================================
+
+Controllers should remain thin.
+
+Create services such as:
+
+QuoteService
+
+QuotationService
+
+OrderService
+
+PaymentService
+
+InventoryService
+
+ProductionService
+
+FileService
+
+NotificationService
+
+InvoiceService
+
+MpesaService
+
+SmsService
+
+WhatsAppService
+
+ReportService
+
+Use dependency injection.
+
+Do not create giant controllers.
+
+==================================================
+55. EVENTS
+==================================================
+
+Use Laravel events.
+
+Examples:
+
+QuoteCreated
+
+QuoteSent
+
+QuoteAccepted
+
+OrderCreated
+
+OrderStatusChanged
+
+PaymentReceived
+
+ProductionStarted
+
+QualityCheckFailed
+
+OrderCompleted
+
+InventoryLow
+
+Use listeners for notifications and secondary operations.
+
+==================================================
+56. QUEUES
+==================================================
+
+Create jobs:
+
+SendSmsJob
+
+SendWhatsAppJob
+
+SendEmailJob
+
+GenerateQuotationPdfJob
+
+GenerateInvoicePdfJob
+
+ProcessUploadedFileJob
+
+ReconcileMpesaPaymentJob
+
+SendPaymentReminderJob
+
+GenerateReportJob
+
+Use retry policies.
+
+Use exponential backoff where appropriate.
+
+Prevent duplicate jobs.
+
+==================================================
+57. CONFIGURATION MANAGEMENT
+==================================================
+
+Create admin settings for non secret business configuration.
+
+Examples:
+
+company name
+
+company address
+
+phone
+
+email
+
+logo
+
+currency
+
+tax rate
+
+quote validity days
+
+default payment terms
+
+order prefixes
+
+invoice prefixes
+
+receipt prefixes
+
+SMS provider
+
+WhatsApp provider
+
+email settings
+
+M-Pesa configuration
+
+Do not expose environment secrets.
+
+Sensitive values must be encrypted.
+
+==================================================
+58. ENVIRONMENT VARIABLES
+==================================================
+
+Provide:
+
+APP_NAME
+
+APP_ENV
+
+APP_KEY
+
+APP_DEBUG
+
+APP_URL
+
+LOG_CHANNEL
+
+DB_CONNECTION=mysql
+
+DB_HOST
+
+DB_PORT
+
+DB_DATABASE
+
+DB_USERNAME
+
+DB_PASSWORD
+
+QUEUE_CONNECTION
+
+CACHE_STORE
+
+FILESYSTEM_DISK
+
+MAIL_MAILER
+
+MAIL_HOST
+
+MAIL_PORT
+
+MAIL_USERNAME
+
+MAIL_PASSWORD
+
+MAIL_ENCRYPTION
+
+MAIL_FROM_ADDRESS
+
+MAIL_FROM_NAME
+
+MPESA_*
+
+SMS_*
+
+WHATSAPP_*
+
+S3_*
+
+Never commit .env.
+
+Create .env.example.
+
+==================================================
+59. MARIA DB SPECIFIC IMPLEMENTATION
+==================================================
+
+The production database is MariaDB.
+
+Laravel must use:
+
+DB_CONNECTION=mysql
+
+with MariaDB compatible configuration.
+
+Use migrations compatible with MariaDB.
+
+Do not introduce PostgreSQL specific functionality.
+
+Avoid database features that are unsupported or behave differently in MariaDB.
+
+Use:
+
+BIGINT UNSIGNED for internal IDs where appropriate.
+
+DECIMAL for money.
+
+JSON columns only where genuinely appropriate.
+
+VARCHAR for indexed identifiers.
+
+TEXT for large descriptions.
+
+DATETIME for business timestamps.
+
+Proper foreign key constraints.
+
+==================================================
+60. PUBLIC IDENTIFIERS
+==================================================
+
+Internal numeric IDs must not be exposed unnecessarily.
+
+Use human friendly reference numbers:
+
+CUS-000001
+
+QTR-000001
+
+ORD-000001
+
+INV-000001
+
+RCT-000001
+
+PAY-000001
+
+JOB-000001
+
+References must be generated server side.
+
+Prevent collisions.
+
+==================================================
+61. CUSTOMER QUOTE FORM
+==================================================
+
+Rebuild the supplied quote form as a dynamic Laravel form.
+
+Service selection must dynamically load fields.
+
+Examples:
+
+Printing:
+
+paper type
+
+paper size
+
+quantity
+
+color
+
+single/double sided
+
+binding
+
+finishing
+
+deadline
+
+special instructions
+
+Branding:
+
+brand type
+
+design required
+
+installation required
+
+quantity
+
+dimensions
+
+materials
+
+deadline
+
+Cyber:
+
+service required
+
+number of pages
+
+document type
+
+deadline
+
+additional instructions
+
+Publishing:
+
+book title
+
+author
+
+page count
+
+trim size
+
+binding
+
+cover
+
+paper
+
+quantity
+
+ISBN
+
+manuscript upload
+
+additional instructions
+
+Do not hardcode every service field into frontend JavaScript.
+
+Fields should come from database configuration.
+
+==================================================
+62. CUSTOMER FILE UPLOAD
+==================================================
+
+Support multiple files.
+
+Display:
+
+filename
+
+size
+
+upload status
+
+validation status
+
+virus scan status
+
+Allow removal before submission.
+
+After submission, files should become immutable unless a new version is uploaded.
+
+==================================================
+63. TRACK ORDER
+==================================================
+
+Implement the supplied track-order.html functionality.
+
+Customer should see:
+
+order reference
+
+service
+
+order date
+
+expected completion
+
+current status
+
+payment status
+
+amount due
+
+timeline
+
+documents
+
+payment actions
+
+Do not expose private information to unauthenticated users.
+
+==================================================
+64. CUSTOMER DASHBOARD
+==================================================
+
+Display:
+
+active orders
+
+pending quotes
+
+recent payments
+
+outstanding amount
+
+recent notifications
+
+quick actions
+
+Request quote.
+
+Track order.
+
+View quotations.
+
+Make payment.
+
+==================================================
+65. AUTHOR DASHBOARD
+==================================================
+
+Display:
+
+books
+
+manuscript status
+
+publishing workflow
+
+production status
+
+royalties if implemented
+
+documents
+
+notifications
+
+==================================================
+66. ADMIN DASHBOARD
+==================================================
+
+Display real metrics.
+
+Include:
+
+revenue.
+
+outstanding payments.
+
+orders.
+
+quotes.
+
+production.
+
+inventory.
+
+customers.
+
+books.
+
+notifications.
+
+Use charts carefully.
+
+Do not overuse charts.
+
+==================================================
+67. MOBILE FIRST DESIGN
+==================================================
+
+The application must work properly at:
+
+320px
+
+375px
+
+390px
+
+414px
+
+768px
+
+1024px
+
+1280px
+
+1440px+
+
+Mobile navigation should be implemented.
+
+Tables should become:
+
+responsive cards
+
+horizontal scroll
+
+or server controlled responsive presentation.
+
+Do not create unusable desktop tables on mobile.
+
+Forms must be optimized for touch.
+
+Buttons should have sufficient touch targets.
+
+==================================================
+68. ACCESSIBILITY
+==================================================
+
+Use semantic HTML.
+
+Labels for every input.
+
+Keyboard navigation.
+
+Visible focus states.
+
+ARIA only where necessary.
+
+Color must not be the only status indicator.
+
+Readable contrast.
+
+Accessible error messages.
+
+==================================================
+69. SEO
+==================================================
+
+Public pages should include:
+
+title
+
+meta description
+
+canonical URL
+
+Open Graph metadata
+
+structured data where appropriate
+
+SEO friendly URLs.
+
+==================================================
+70. PERFORMANCE
+==================================================
+
+Use:
+
+eager loading where appropriate.
+
+lazy loading where appropriate.
+
+query optimization.
+
+pagination.
+
+caching.
+
+queue jobs.
+
+database indexes.
+
+optimized images.
+
+asset bundling.
+
+HTTP caching.
+
+Avoid N+1 queries.
+
+Use Laravel Telescope only in development/staging.
+
+Never expose Telescope publicly in production.
+
+==================================================
+71. SECURITY HEADERS
+==================================================
+
+Configure:
+
+Content Security Policy where practical.
+
+X Content Type Options.
+
+Referrer Policy.
+
+Permissions Policy.
+
+Frame protection.
+
+HSTS in production.
+
+Secure cookies.
+
+Avoid inline scripts where possible.
+
+==================================================
+72. RATE LIMITING
+==================================================
+
+Rate limit:
+
+login
+
+registration
+
+password reset
+
+quote submission
+
+file uploads
+
+order tracking
+
+payment initiation
+
+M-Pesa STK requests
+
+public contact forms
+
+API endpoints
+
+==================================================
+73. ANTI ABUSE
+==================================================
+
+Implement:
+
+honeypot or CAPTCHA for public forms where appropriate.
+
+IP based throttling.
+
+Account based throttling.
+
+Duplicate quote detection.
+
+Upload limits.
+
+Request body limits.
+
+Maximum number of files.
+
+Maximum total upload size.
+
+==================================================
+74. ERROR HANDLING
+==================================================
+
+Never expose stack traces in production.
+
+Use custom error pages:
+
+403
+
+404
+
+419
+
+429
+
+500
+
+503
+
+Log internal details securely.
+
+Show safe user friendly messages.
+
+==================================================
+75. DATABASE TRANSACTIONS
+==================================================
+
+Use transactions for:
+
+quote acceptance.
+
+order creation.
+
+payment processing.
+
+inventory consumption.
+
+inventory adjustment.
+
+refund.
+
+quotation conversion.
+
+publishing workflow transitions.
+
+Any operation modifying multiple related tables.
+
+==================================================
+76. TESTING
+==================================================
+
+Create automated tests.
+
+Feature tests.
+
+Unit tests.
+
+Integration tests.
+
+Authorization tests.
+
+Security tests.
+
+Database tests.
+
+Payment tests.
+
+Webhook tests.
+
+File upload tests.
+
+Notification tests.
+
+Important test scenarios:
+
+Customer cannot access another customer's order.
+
+Customer cannot download another customer's file.
+
+Staff cannot access administrator functionality.
+
+Successful M-Pesa callback creates exactly one payment.
+
+Duplicate callback creates no additional payment.
+
+Invalid callback is rejected.
+
+Cancelled order cannot receive normal payment.
+
+Quote cannot be accepted after expiration.
+
+Quote cannot be accepted twice.
+
+Inventory cannot become negative unless explicitly allowed.
+
+Unauthorized user cannot modify prices.
+
+Successful payment updates financial totals atomically.
+
+==================================================
+77. SEEDERS
+==================================================
+
+Create seed data.
+
+Roles.
+
+Permissions.
+
+Admin user.
+
+Staff users.
+
+Service categories.
+
+Services.
+
+Service fields.
+
+Sample customers.
+
+Sample quotations.
+
+Sample orders.
+
+Sample inventory.
+
+Development notifications.
+
+Never use production credentials in seeders.
+
+==================================================
+78. FACTORIES
+==================================================
+
+Create factories for:
+
+User
+
+Customer
+
+Author
+
+Service
+
+QuoteRequest
+
+Quotation
+
+QuotationItem
+
+Order
+
+OrderItem
+
+Payment
+
+Book
+
+InventoryItem
+
+ProductionJob
+
+Notification
+
+AuditLog
+
+==================================================
+79. API/DOCUMENTATION
+==================================================
+
+Document all internal and external APIs.
+
+Include:
+
+endpoint
+
+method
+
+authentication
+
+request
+
+validation
+
+response
+
+errors
+
+rate limits
+
+idempotency requirements
+
+webhook behavior
+
+==================================================
+80. ADMIN INTEGRATION SETTINGS
+==================================================
+
+Create a secure Settings page.
+
+Sections:
+
+General.
+
+Email.
+
+SMS.
+
+WhatsApp.
+
+M-Pesa.
+
+Storage.
+
+Notifications.
+
+Security.
+
+Tax.
+
+Orders.
+
+Quotes.
+
+Payments.
+
+Each integration should provide:
+
+configuration form
+
+validation
+
+test connection
+
+enable/disable
+
+last test status
+
+last error
+
+last successful request
+
+Never show full API secrets after saving.
+
+Display masked values.
+
+==================================================
+81. CREDENTIAL ENCRYPTION
+==================================================
+
+Credentials such as:
+
+API keys.
+
+API secrets.
+
+Access tokens.
+
+M-Pesa secrets.
+
+SMS credentials.
+
+WhatsApp credentials.
+
+must be encrypted at rest using Laravel encryption.
+
+Do not hash credentials that must later be retrieved.
+
+Use encryption for retrievable secrets.
+
+==================================================
+82. AUDITABLE SETTINGS
+==================================================
+
+Changing an integration setting must create an audit record.
+
+Do not record plaintext secrets in audit logs.
+
+Mask sensitive values.
+
+==================================================
+83. BUSINESS RULE ENGINE
+==================================================
+
+Pricing must not be hardcoded inside controllers.
+
+Create configurable pricing architecture.
+
+Support:
+
+fixed price
+
+unit price
+
+quantity based pricing
+
+page based pricing
+
+custom quote
+
+discount
+
+tax
+
+rush fee
+
+delivery fee
+
+additional service fee
+
+Pricing calculations must execute server side.
+
+==================================================
+84. QUOTE EXPIRATION
+==================================================
+
+Quotation must automatically expire after valid_until.
+
+Expired quotation cannot normally be accepted.
+
+Administrators with proper permission may regenerate a quote.
+
+Record this action in audit logs.
+
+==================================================
+85. PAYMENT REMINDERS
+==================================================
+
+Automatically identify overdue accounts.
+
+Send configurable reminders.
+
+Example schedule:
+
+3 days before due date.
+
+On due date.
+
+3 days overdue.
+
+7 days overdue.
+
+14 days overdue.
+
+Avoid spam.
+
+Store notification history.
+
+==================================================
+86. ORDER NOTIFICATIONS
+==================================================
+
+When order status changes:
+
+Create notification.
+
+Send email.
+
+Optionally send SMS.
+
+Optionally send WhatsApp.
+
+All external messages must be queued.
+
+Record delivery status.
+
+==================================================
+87. MESSAGE TEMPLATES
+==================================================
+
+Create notification_templates.
+
+Fields:
+
+id
+
+event
+
+channel
+
+subject
+
+body
+
+variables
+
+is_active
+
+Examples:
+
+{{customer_name}}
+
+{{order_number}}
+
+{{amount_due}}
+
+{{payment_reference}}
+
+{{expected_completion_date}}
+
+Sanitize template rendering.
+
+Never allow arbitrary executable code in templates.
+
+==================================================
+88. CONTACT MANAGEMENT
+==================================================
+
+Contact form must create database records.
+
+Fields:
+
+id
+
+name
+
+email
+
+phone
+
+subject
+
+message
+
+status
+
+assigned_to
+
+created_at
+
+updated_at
+
+Allow admin to:
+
+view
+
+assign
+
+reply
+
+close
+
+mark spam
+
+==================================================
+89. PORTFOLIO
+==================================================
+
+Create portfolio_items.
+
+Fields:
+
+id
+
+title
+
+slug
+
+category
+
+description
+
+image
+
+project_date
+
+client_name nullable
+
+is_featured
+
+is_published
+
+sort_order
+
+created_at
+
+updated_at
+
+Admin can:
+
+create
+
+edit
+
+delete
+
+publish
+
+unpublish
+
+feature
+
+reorder
+
+==================================================
+90. INVENTORY ALERTS
+==================================================
+
+When stock reaches reorder level:
+
+Create notification.
+
+Notify inventory manager.
+
+Display dashboard alert.
+
+Optionally create purchase suggestion.
+
+==================================================
+91. BACKGROUND JOB MONITORING
+==================================================
+
+Failed jobs must be visible to administrators.
+
+Do not silently lose failed SMS, email, WhatsApp or payment reconciliation jobs.
+
+Implement retry policies.
+
+Store failure reasons.
+
+==================================================
+92. LOGGING
+==================================================
+
+Use structured application logs.
+
+Log:
+
+authentication failures
+
+payment events
+
+webhook events
+
+integration failures
+
+queue failures
+
+security violations
+
+important business operations
+
+Do not log:
+
+passwords
+
+API secrets
+
+M-Pesa credentials
+
+full payment card data
+
+private customer documents
+
+==================================================
+93. DATA RETENTION
+==================================================
+
+Implement configurable retention for:
+
+application logs
+
+temporary uploads
+
+expired tokens
+
+old notifications
+
+webhook payloads
+
+audit logs should generally have longer retention.
+
+Never automatically delete financial records simply because they are old.
+
+==================================================
+94. BACKUPS
+==================================================
+
+Provide production backup strategy.
+
+Database backup.
+
+File backup.
+
+Configuration backup.
+
+Test restoration.
+
+Never consider backup successful unless restoration has been tested.
+
+Document:
+
+daily backups
+
+retention
+
+offsite storage
+
+encryption
+
+restore procedure
+
+==================================================
+95. DEPLOYMENT
+==================================================
+
+Provide deployment instructions for:
+
+Ubuntu Linux.
+
+Nginx.
+
+PHP-FPM.
+
+MariaDB.
+
+Supervisor.
+
+Cron.
+
+SSL.
+
+Storage.
+
+Queue worker.
+
+Production environment variables.
+
+Database migrations.
+
+Database seeding.
+
+Cache optimization.
+
+Route cache.
+
+Config cache.
+
+View cache.
+
+Storage link where appropriate.
+
+==================================================
+96. CI/CD
+==================================================
+
+Create CI pipeline.
+
+Steps:
+
+checkout
+
+PHP setup
+
+Composer install
+
+environment setup
+
+lint
+
+static analysis
+
+unit tests
+
+feature tests
+
+security checks
+
+frontend build
+
+migration test
+
+deployment artifact
+
+Do not deploy if tests fail.
+
+==================================================
+97. CODE QUALITY
+==================================================
+
+Follow:
+
+PSR standards.
+
+Laravel conventions.
+
+SOLID principles.
+
+DRY.
+
+Separation of concerns.
+
+Dependency injection.
+
+Form Requests.
+
+Policies.
+
+Services.
+
+Events.
+
+Jobs.
+
+Resources.
+
+Repositories only where they provide real value.
+
+Do not create unnecessary abstractions.
+
+==================================================
+98. CONTROLLERS
+==================================================
+
+Controllers must be thin.
+
+Example:
+
+public function store(StoreQuoteRequest $request)
+{
+    $quote = $this->quoteService->create(
+        $request->validated(),
+        $request->user()
+    );
+
+    return redirect()
+        ->route('customer.quotes.show', $quote);
+}
+
+Business logic belongs in services/domain layer.
+
+==================================================
+99. ROUTING
+==================================================
+
+Create route groups:
+
+public
+
+auth
+
+customer
+
+author
+
+staff
+
+admin
+
+API
+
+webhooks
+
+Protect routes with middleware.
+
+Do not expose administrative routes without authorization.
+
+==================================================
+100. UI COMPONENTS
+==================================================
+
+Create reusable Blade components:
+
+button
+
+input
+
+select
+
+textarea
+
+modal
+
+alert
+
+badge
+
+status
+
+card
+
+table
+
+pagination
+
+file uploader
+
+form error
+
+empty state
+
+loading state
+
+confirmation dialog
+
+timeline
+
+dashboard metric
+
+notification item
+
+==================================================
+101. DESIGN SYSTEM
+==================================================
+
+Preserve the existing visual style.
+
+Primary:
+
+dark navy.
+
+Accent:
+
+gold.
+
+Background:
+
+light gray.
+
+Cards:
+
+white.
+
+Border:
+
+light gray.
+
+Status colors:
+
+success
+
+warning
+
+danger
+
+info
+
+Ensure accessible contrast.
+
+==================================================
+102. JAVASCRIPT
+==================================================
+
+JavaScript should only handle interface behavior.
+
+Do not move business logic into JavaScript.
+
+Examples:
+
+dynamic service fields.
+
+file previews.
+
+modal behavior.
+
+mobile menu.
+
+filters.
+
+AJAX interactions.
+
+progress indicators.
+
+Business calculations must remain server authoritative.
+
+==================================================
+103. AJAX
+==================================================
+
+Where useful, use Laravel endpoints for:
+
+service field loading
+
+file uploads
+
+notifications
+
+search
+
+dashboard updates
+
+payment initiation
+
+Use CSRF protection.
+
+Return structured JSON.
+
+Validate all requests.
+
+==================================================
+104. API RESPONSES
+==================================================
+
+Use consistent response format.
+
+Success:
+
+{
+    "success": true,
+    "message": "...",
+    "data": {}
+}
+
+Error:
+
+{
+    "success": false,
+    "message": "...",
+    "errors": {}
+}
+
+Never expose internal exception details.
+
+==================================================
+105. FINANCIAL PRECISION
+==================================================
+
+Never use JavaScript floating point calculations as authoritative financial calculations.
+
+Server side:
+
+DECIMAL.
+
+PHP:
+
+string based decimal calculations or a suitable money abstraction where necessary.
+
+Round according to configured currency rules.
+
+Store:
+
+subtotal
+
+discount
+
+tax
+
+total
+
+amount_paid
+
+amount_due
+
+separately.
+
+==================================================
+106. ORDER NUMBER GENERATION
+==================================================
+
+Order numbers must be unique.
+
+Use transactional generation.
+
+Do not use:
+
+SELECT MAX(order_number) + 1
+
+because of concurrency problems.
+
+Use database sequences through a safe counter mechanism or UUID based internal identifiers combined with human readable references.
+
+==================================================
+107. SECURITY OF PUBLIC REFERENCES
+==================================================
+
+Human readable references must not grant access.
+
+For sensitive public operations use:
+
+signed URLs
+
+random tokens
+
+authenticated sessions
+
+verification challenges
+
+==================================================
+108. ADMIN ACTION CONFIRMATION
+==================================================
+
+Dangerous operations require confirmation:
+
+delete
+
+cancel order
+
+refund
+
+stock adjustment
+
+change payment status
+
+change user role
+
+disable integration
+
+delete portfolio item
+
+==================================================
+109. SOFT DELETES
+==================================================
+
+Use soft deletes for appropriate business entities.
+
+Never hard delete financial records.
+
+Never hard delete audit records.
+
+Never hard delete payment records.
+
+==================================================
+110. DATABASE MIGRATION ORDER
+==================================================
+
+Create migrations in dependency order.
+
+Recommended:
+
+users
+
+roles
+
+permissions
+
+role_user
+
+permission_role
+
+customers
+
+authors
+
+service_categories
+
+services
+
+service_fields
+
+files
+
+quote_requests
+
+quote_request_values
+
+quotations
+
+quotation_items
+
+orders
+
+order_items
+
+order_status_history
+
+production_jobs
+
+quality_checks
+
+books
+
+manuscript_versions
+
+inventory_items
+
+inventory_transactions
+
+suppliers
+
+purchase_orders
+
+purchase_order_items
+
+payments
+
+invoices
+
+receipts
+
+notifications
+
+notification_templates
+
+portfolio_items
+
+contacts
+
+settings
+
+audit_logs
+
+webhook_events
+
+==================================================
+111. WEBHOOK EVENTS
+==================================================
+
+Create webhook_events.
+
+Fields:
+
+id
+
+provider
+
+event_type
+
+external_reference
+
+payload
+
+signature
+
+status
+
+processed_at
+
+error_message
+
+created_at
+
+Use unique constraints where appropriate.
+
+Never process the same webhook twice.
+
+==================================================
+112. ADMIN SECURITY
+==================================================
+
+Administrators should have stronger security.
+
+Require:
+
+email verification
+
+strong password
+
+optional mandatory 2FA
+
+login throttling
+
+audit logging
+
+shorter session timeout where appropriate
+
+IP/device monitoring where appropriate
+
+==================================================
+113. DATA ACCESS CONTROL
+==================================================
+
+Implement object level authorization.
+
+Examples:
+
+Customer A cannot view Customer B's order.
+
+Customer A cannot access Customer B's quote.
+
+Staff member cannot modify a quote unless permission allows it.
+
+Production staff cannot change financial totals.
+
+Finance staff cannot modify production instructions unless authorized.
+
+==================================================
+114. BUSINESS WORKFLOW
+==================================================
+
+Primary workflow:
+
+CUSTOMER
+
+Request Quote
+
+↓
+
+Upload files
+
+↓
+
+Submit Request
+
+↓
+
+ADMIN
+
+Review Request
+
+↓
+
+Calculate Price
+
+↓
+
+Create Quotation
+
+↓
+
+Generate PDF
+
+↓
+
+Send Quote
+
+↓
+
+CUSTOMER
+
+View Quote
+
+↓
+
+Accept Quote
+
+↓
+
+SYSTEM
+
+Create Order
+
+↓
+
+Calculate Deposit
+
+↓
+
+Notify Customer
+
+↓
+
+CUSTOMER
+
+Pay Deposit
+
+↓
+
+SYSTEM
+
+Confirm Payment
+
+↓
+
+Production Queue
+
+↓
+
+PRODUCTION
+
+Start Production
+
+↓
+
+Quality Check
+
+↓
+
+Ready
+
+↓
+
+Customer Notification
+
+↓
+
+Customer Collection/Delivery
+
+↓
+
+Final Payment
+
+↓
+
+Order Completed
+
+↓
+
+Invoice/Receipt
+
+==================================================
+115. IMPLEMENTATION PHASES
+==================================================
+
+PHASE 1
+
+Laravel project initialization.
+
+Install dependencies.
+
+Configure MariaDB.
+
+Configure authentication.
+
+Configure frontend build.
+
+PHASE 2
+
+Database architecture.
+
+Migrations.
+
+Models.
+
+Relationships.
+
+Factories.
+
+Seeders.
+
+PHASE 3
+
+Authentication and authorization.
+
+Roles.
+
+Permissions.
+
+Policies.
+
+Admin access.
+
+Customer access.
+
+Staff access.
+
+PHASE 4
+
+Public website.
+
+Home.
+
+Services.
+
+Publishing.
+
+Books.
+
+Printing.
+
+Branding.
+
+Cyber.
+
+Portfolio.
+
+Contact.
+
+Quote request.
+
+PHASE 5
+
+Customer portal.
+
+Dashboard.
+
+Quotes.
+
+Orders.
+
+Payments.
+
+Tracking.
+
+Documents.
+
+Notifications.
+
+PHASE 6
+
+Admin dashboard.
+
+Customers.
+
+Quotes.
+
+Orders.
+
+Production.
+
+Inventory.
+
+Sales.
+
+Reports.
+
+Staff.
+
+Notifications.
+
+Portfolio.
+
+Settings.
+
+PHASE 7
+
+Payment integrations.
+
+M-Pesa.
+
+Payment reconciliation.
+
+Invoices.
+
+Receipts.
+
+PHASE 8
+
+SMS.
+
+WhatsApp.
+
+Email.
+
+Notification templates.
+
+Queued jobs.
+
+PHASE 9
+
+Publishing management.
+
+Books.
+
+Authors.
+
+Manuscripts.
+
+Publishing workflow.
+
+PHASE 10
+
+Security hardening.
+
+Audit logging.
+
+Rate limiting.
+
+File security.
+
+Webhook security.
+
+Access control.
+
+PHASE 11
+
+Testing.
+
+Unit.
+
+Feature.
+
+Integration.
+
+Security.
+
+Concurrency.
+
+Payment.
+
+PHASE 12
+
+Deployment.
+
+Nginx.
+
+PHP-FPM.
+
+MariaDB.
+
+Supervisor.
+
+Cron.
+
+SSL.
+
+Backups.
+
+Monitoring.
+
+==================================================
+116. DELIVERABLES
+==================================================
+
+Produce a complete working Laravel application.
+
+Include:
+
+Laravel source code.
+
+Blade templates.
+
+CSS.
+
+JavaScript.
+
+Migrations.
+
+Models.
+
+Factories.
+
+Seeders.
+
+Controllers.
+
+Form Requests.
+
+Policies.
+
+Middleware.
+
+Services.
+
+Events.
+
+Listeners.
+
+Jobs.
+
+Notifications.
+
+Mail.
+
+PDF generation.
+
+File handling.
+
+M-Pesa integration.
+
+SMS integration architecture.
+
+WhatsApp integration architecture.
+
+Reports.
+
+Admin dashboard.
+
+Customer portal.
+
+Author portal.
+
+Staff portal.
+
+API endpoints where required.
+
+Tests.
+
+README.
+
+Installation documentation.
+
+Deployment documentation.
+
+Security documentation.
+
+Database documentation.
+
+Integration configuration documentation.
+
+==================================================
+117. README
+==================================================
+
+README must contain:
+
+Project overview.
+
+Requirements.
+
+Installation.
+
+Composer setup.
+
+NPM setup.
+
+MariaDB creation.
+
+Environment configuration.
+
+Migration.
+
+Seeding.
+
+Storage.
+
+Queue.
+
+Scheduler.
+
+M-Pesa configuration.
+
+SMS configuration.
+
+WhatsApp configuration.
+
+Email configuration.
+
+Testing.
+
+Production deployment.
+
+Backup.
+
+Troubleshooting.
+
+==================================================
+118. DO NOT DO THESE THINGS
+==================================================
+
+Do not use fake payment success.
+
+Do not trust frontend totals.
+
+Do not store API credentials in JavaScript.
+
+Do not expose .env.
+
+Do not put uploaded files in public storage by default.
+
+Do not use plain text passwords.
+
+Do not use raw SQL unnecessarily.
+
+Do not concatenate user input into SQL.
+
+Do not use SELECT MAX(id)+1 for references.
+
+Do not delete financial records.
+
+Do not process webhooks without idempotency.
+
+Do not put business logic inside Blade.
+
+Do not put business logic inside JavaScript.
+
+Do not create giant controllers.
+
+Do not use hardcoded service forms.
+
+Do not expose sequential IDs unnecessarily through public URLs.
+
+Do not use fake dashboard statistics.
+
+Do not skip authorization because a user is authenticated.
+
+Do not assume authentication equals authorization.
+
+Do not make external API requests synchronously where queues are appropriate.
+
+==================================================
+119. FINAL ACCEPTANCE CRITERIA
+==================================================
+
+The application is considered complete only when:
+
+1. MariaDB migrations run successfully.
+
+2. Database seeders work.
+
+3. Authentication works.
+
+4. Roles work.
+
+5. Permissions work.
+
+6. Customers can register.
+
+7. Customers can submit quotes.
+
+8. Customers can upload files securely.
+
+9. Staff can review requests.
+
+10. Staff can create quotations.
+
+11. PDFs can be generated.
+
+12. Customers can receive quotations.
+
+13. Customers can accept quotations.
+
+14. Orders are created automatically from accepted quotations.
+
+15. Order statuses work.
+
+16. Production jobs work.
+
+17. Quality checks work.
+
+18. Inventory works.
+
+19. Payments work.
+
+20. M-Pesa integration is implemented using proper callback handling.
+
+21. Duplicate M-Pesa callbacks cannot create duplicate payments.
+
+22. Invoices work.
+
+23. Receipts work.
+
+24. SMS architecture works.
+
+25. WhatsApp architecture works.
+
+26. Email notifications work.
+
+27. Queue jobs work.
+
+28. Scheduled tasks work.
+
+29. Audit logs work.
+
+30. Unauthorized access is rejected.
+
+31. Customer data isolation works.
+
+32. File authorization works.
+
+33. Financial calculations are server authoritative.
+
+34. Dashboard statistics are database driven.
+
+35. Reports work.
+
+36. Mobile interface works.
+
+37. Automated tests pass.
+
+38. Production configuration is documented.
+
+39. Secrets are not committed.
+
+40. Application can be deployed to a Linux production server.
+
+==================================================
+120. DEVELOPMENT APPROACH
+==================================================
+
+Do not generate the entire application as one enormous response.
+
+Build the application incrementally.
+
+For every phase:
+
+1. Explain architecture.
+
+2. Create database changes.
+
+3. Create models.
+
+4. Create services.
+
+5. Create controllers.
+
+6. Create routes.
+
+7. Create Blade UI.
+
+8. Create JavaScript where needed.
+
+9. Create authorization.
+
+10. Create tests.
+
+11. Review security.
+
+12. Review database performance.
+
+13. Review edge cases.
+
+14. Provide migration and installation commands.
+
+Never move to the next phase if the previous phase contains unresolved architectural or security problems.
+
+The final result must be production ready rather than merely visually similar to the supplied HTML.

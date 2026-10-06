@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Inventory Management | Admin</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="admin-layout">
+      <aside class="sidebar">
+        <div class="brand"><div class="logo-mark">P</div><div class="brand-copy"><strong>Print & Publish</strong><small>Admin</small></div></div>
+        <div class="nav-group"><div class="nav-title">Main</div><a href="admin-dashboard.html">Dashboard</a><a href="admin-orders.html">Orders</a><a href="admin-quotations.html">Quotations</a><a href="admin-sales.html">Sales</a><a href="admin-inventory.html" class="active">Inventory</a><a href="admin-publishing.html">Publishing</a><a href="admin-portfolio.html">Portfolio</a><a href="admin-notifications.html">Notifications</a><a href="admin-reports.html">Reports</a><a href="admin-staff.html">Users & Staff</a></div>
+      </aside>
+      <main class="admin-main">
+        <div class="topbar-admin"><div><h2 style="margin:0;">Inventory</h2></div><button class="btn btn-primary">Add Item</button></div>
+        <div class="kpi-grid">
+          <div class="kpi-card"><div class="mini">Total Items</div><div class="value">1,247</div><div class="trend">+36 this week</div></div>
+          <div class="kpi-card"><div class="mini">Low Stock</div><div class="value">32</div><div class="trend">Review soon</div></div>
+          <div class="kpi-card"><div class="mini">Out of Stock</div><div class="value">14</div><div class="trend">Immediate action</div></div>
+          <div class="kpi-card"><div class="mini">Recently Used</div><div class="value">218</div><div class="trend">Production tracking</div></div>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Item</th><th>Category</th><th>Quantity</th><th>Unit</th><th>Minimum Stock</th><th>Status</th><th>Last Updated</th><th>Actions</th></tr></thead>
+            <tbody>
+              <tr><td>Gloss Paper A4</td><td>Paper</td><td>500</td><td>Reams</td><td>100</td><td><span class="status-pill status-paid">Healthy</span></td><td>2026-09-26</td><td><button class="action-pill">View</button></td></tr>
+              <tr><td>Black Ink Cartridge</td><td>Ink</td><td>20</td><td>Units</td><td>30</td><td><span class="status-pill status-pending">Low Stock</span></td><td>2026-09-25</td><td><button class="action-pill">View</button></td></tr>
+              <tr><td>Banner Vinyl</td><td>Banner Material</td><td>0</td><td>Rolls</td><td>8</td><td><span class="status-pill status-production">Out of Stock</span></td><td>2026-09-10</td><td><button class="action-pill">View</button></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </main>
+    </div>
+    <script src="script.js"></script>
+  </body>
+</html>
