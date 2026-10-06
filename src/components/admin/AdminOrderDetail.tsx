@@ -49,7 +49,10 @@ export function AdminOrderDetail() {
   const [newStatus, setNewStatus] = useState('');
   const [reason, setReason] = useState('');
   const [saving, setSaving] = useState(false);
-  const [assignToId, setAssignToId] = useState<string>('');
+  // NOTE: Radix Select forbids "" as a value (it is reserved for clearing the
+  // selection), so we use a sentinel for "Unassigned".
+  const UNASSIGNED = '__unassigned__';
+  const [assignToId, setAssignToId] = useState<string>(UNASSIGNED);
 
   const fetchOrder = async () => {
     if (!id) return;
@@ -57,7 +60,7 @@ export function AdminOrderDetail() {
     try {
       const o = await apiClient.get<Order>(`/orders/${id}`) as any;
       setOrder(o);
-      setAssignToId(o.assignedToId ?? '');
+      setAssignToId(o.assignedToId ?? UNASSIGNED);
     } catch (e: any) {
       pushToast({ message: e.message ?? 'Failed to load order', type: 'error' });
     } finally {
@@ -100,7 +103,7 @@ export function AdminOrderDetail() {
     if (!order) return;
     setSaving(true);
     try {
-      await apiClient.patch(`/orders/${order.id}`, { assignedToId: assignToId || null });
+      await apiClient.patch(`/orders/${order.id}`, { assignedToId: assignToId === UNASSIGNED ? null : assignToId });
       pushToast({ message: 'Assignment updated.', type: 'success' });
       fetchOrder();
     } catch (e: any) {
@@ -258,8 +261,8 @@ export function AdminOrderDetail() {
                   <Select value={assignToId} onValueChange={setAssignToId}>
                     <SelectTrigger className="w-full"><SelectValue placeholder="Unassigned" /></SelectTrigger>
                     <SelectContent>
-                      <SelectItem value="">Unassigned</SelectItem>
-                      {staff.map((s) => <SelectItem key={s.id} value={s.id}>{s.name} · {(s.role ?? '').replace(/_/g, ' ').toLowerCase()}</SelectItem>)}
+                      <SelectItem value={UNASSIGNED}>Unassigned</SelectItem>
+                      {staff.filter((s) => Boolean(s?.id)).map((s) => <SelectItem key={s.id} value={s.id}>{s.name} · {(s.role ?? '').replace(/_/g, ' ').toLowerCase()}</SelectItem>)}
                     </SelectContent>
                   </Select>
                 </div>
