@@ -156,7 +156,7 @@ export function TrackOrderView() {
                   </div>
                   <div className="flex flex-col items-start gap-2">
                     <StatusBadge status={result.status} />
-                    <StatusBadge status={result.paymentStatus} label={result.paymentStatus.replace(/_/g, ' ')} />
+                    <StatusBadge status={result.paymentStatus} label={(result.paymentStatus ?? '').replace(/_/g, ' ')} />
                   </div>
                 </div>
 
@@ -292,9 +292,9 @@ export function TrackOrderView() {
                               <div className="mt-1 h-2 w-2 flex-shrink-0 rounded-full bg-gold" />
                               <div className="min-w-0">
                                 <p className="text-xs font-bold text-navy">
-                                  {ev.fromStatus ? ev.fromStatus.replace(/_/g, ' ') : 'Created'}
+                                  {ev.fromStatus ? (ev.fromStatus ?? '').replace(/_/g, ' ') : 'Created'}
                                   {' → '}
-                                  <span className="text-gold">{ev.toStatus.replace(/_/g, ' ')}</span>
+                                  <span className="text-gold">{(ev.toStatus ?? '').replace(/_/g, ' ')}</span>
                                 </p>
                                 <p className="text-xs text-slate-500">
                                   {new Date(ev.createdAt).toLocaleString('en-KE', { dateStyle: 'medium', timeStyle: 'short' })}

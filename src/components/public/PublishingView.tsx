@@ -190,7 +190,7 @@ export function PublishingView() {
                         <img src={b.coverImageUrl} alt={b.title} className="h-32 w-24 rounded-lg object-cover shadow-md" />
                       ) : (
                         <div className="grid h-32 w-24 place-items-center rounded-lg bg-gradient-to-br from-navy to-navy-soft text-center text-xs font-bold text-gold shadow-md">
-                          {b.title.split(' ').slice(0, 2).map((w) => w[0]).join('').toUpperCase()}
+                          {(b.title ?? '').split(' ').slice(0, 2).map((w) => w[0] ?? '').join('').toUpperCase()}
                         </div>
                       )}
                     </div>

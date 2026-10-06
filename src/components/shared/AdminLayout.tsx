@@ -106,7 +106,7 @@ export function AdminLayout({ children }: { children: React.ReactNode }) {
           <div className="grid h-9 w-9 place-items-center rounded-full bg-gold text-sm font-bold text-navy">{user?.name?.[0] ?? 'A'}</div>
           <div className="min-w-0 flex-1">
             <p className="truncate text-sm font-bold text-white">{user?.name}</p>
-            <p className="truncate text-xs text-white/50 capitalize">{user?.role.replace(/_/g, ' ').toLowerCase()}</p>
+            <p className="truncate text-xs text-white/50 capitalize">{(user?.role ?? '').replace(/_/g, ' ').toLowerCase()}</p>
           </div>
         </div>
         <button onClick={handleLogout} className="flex w-full items-center justify-center gap-2 rounded-lg border border-white/10 px-3 py-2 text-sm font-semibold text-white/70 hover:bg-white/5 hover:text-white">

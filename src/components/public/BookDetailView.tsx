@@ -116,7 +116,7 @@ export function BookDetailView() {
   }
 
   const authorName = book.author.penName || `${book.author.firstName} ${book.author.lastName}`;
-  const initials = book.title.split(' ').slice(0, 2).map((w) => w[0]).join('').toUpperCase();
+  const initials = (book.title ?? '').split(' ').slice(0, 2).map((w) => w[0] ?? '').join('').toUpperCase();
 
   return (
     <>

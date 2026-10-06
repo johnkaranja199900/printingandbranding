@@ -184,7 +184,7 @@ export function AdminDashboard() {
                     return (
                       <div key={s.name}>
                         <div className="mb-1 flex justify-between text-xs">
-                          <span className="font-semibold text-slate-600">{s.name.replace(/_/g, ' ').toLowerCase().replace(/\b\w/g, c => c.toUpperCase())}</span>
+                          <span className="font-semibold text-slate-600">{(s.name ?? '').replace(/_/g, ' ').toLowerCase().replace(/\b\w/g, c => c.toUpperCase())}</span>
                           <span className="font-bold text-navy">{s.value}</span>
                         </div>
                         <div className="h-2 w-full overflow-hidden rounded-full bg-slate-100">
@@ -246,7 +246,7 @@ export function AdminDashboard() {
                       <div className="min-w-0 flex-1">
                         <p className="text-sm text-slate-700">
                           <span className="font-bold text-navy">{a.actor?.name ?? 'System'}</span>{' '}
-                          <span className="text-slate-500">{a.action.replace(/[._]/g, ' ')}</span>
+                          <span className="text-slate-500">{(a.action ?? '').replace(/[._]/g, ' ')}</span>
                         </p>
                         <p className="text-xs text-slate-400">{timeAgo(a.createdAt)} · {a.entityType}</p>
                       </div>
@@ -278,7 +278,7 @@ export function AdminDashboard() {
                     </div>
                     <div className="min-w-0 flex-1">
                       <p className="truncate text-sm font-bold text-navy">{s.name}</p>
-                      <p className="truncate text-xs text-slate-500">{s.role.replace(/_/g, ' ').toLowerCase()}</p>
+                      <p className="truncate text-xs text-slate-500">{(s.role ?? '').replace(/_/g, ' ').toLowerCase()}</p>
                     </div>
                     <span className={cn(
                       'h-2.5 w-2.5 flex-none rounded-full',
