@@ -160,7 +160,7 @@ export function AdminQuoteDetail() {
     setStatusUpdating(true);
     try {
       await apiClient.patch(`/quote-requests/${request.id}`, { status: newStatus });
-      pushToast({ message: `Request marked as ${newStatus.replace(/_/g, ' ').toLowerCase()}.`, type: 'success' });
+      pushToast({ message: `Request marked as ${(newStatus ?? '').replace(/_/g, ' ').toLowerCase()}.`, type: 'success' });
       fetchData();
     } catch (e: any) {
       pushToast({ message: e.message ?? 'Failed to update status', type: 'error' });
@@ -213,7 +213,7 @@ export function AdminQuoteDetail() {
               <Select value={request.status} onValueChange={updateRequestStatus} disabled={statusUpdating}>
                 <SelectTrigger className="w-56"><SelectValue /></SelectTrigger>
                 <SelectContent>
-                  {REQUEST_STATUSES.map((s) => <SelectItem key={s} value={s}>{s.replace(/_/g, ' ').toLowerCase().replace(/\b\w/g, c => c.toUpperCase())}</SelectItem>)}
+                  {REQUEST_STATUSES.map((s) => <SelectItem key={s} value={s}>{(s ?? '').replace(/_/g, ' ').toLowerCase().replace(/\b\w/g, c => c.toUpperCase())}</SelectItem>)}
                 </SelectContent>
               </Select>
               {isQuotationMode && (

@@ -142,14 +142,14 @@ export function AdminOrders() {
                 <SelectTrigger className="w-full md:w-44"><Filter className="mr-1 h-3.5 w-3.5" /><SelectValue placeholder="Status" /></SelectTrigger>
                 <SelectContent>
                   <SelectItem value="all">All statuses</SelectItem>
-                  {ORDER_STATUSES.map((s) => <SelectItem key={s} value={s}>{s.replace(/_/g, ' ').toLowerCase().replace(/\b\w/g, c => c.toUpperCase())}</SelectItem>)}
+                  {ORDER_STATUSES.map((s) => <SelectItem key={s} value={s}>{(s ?? '').replace(/_/g, ' ').toLowerCase().replace(/\b\w/g, c => c.toUpperCase())}</SelectItem>)}
                 </SelectContent>
               </Select>
               <Select value={paymentStatus} onValueChange={(v) => { setPaymentStatus(v); setPage(1); }}>
                 <SelectTrigger className="w-full md:w-44"><SelectValue placeholder="Payment" /></SelectTrigger>
                 <SelectContent>
                   <SelectItem value="all">All payments</SelectItem>
-                  {PAYMENT_STATUSES.map((s) => <SelectItem key={s} value={s}>{s.replace(/_/g, ' ').toLowerCase().replace(/\b\w/g, c => c.toUpperCase())}</SelectItem>)}
+                  {PAYMENT_STATUSES.map((s) => <SelectItem key={s} value={s}>{(s ?? '').replace(/_/g, ' ').toLowerCase().replace(/\b\w/g, c => c.toUpperCase())}</SelectItem>)}
                 </SelectContent>
               </Select>
               <div className="flex gap-2">
@@ -292,7 +292,7 @@ export function AdminOrders() {
               <Select value={newStatus} onValueChange={setNewStatus}>
                 <SelectTrigger className="w-full"><SelectValue /></SelectTrigger>
                 <SelectContent>
-                  {ORDER_STATUSES.map((s) => <SelectItem key={s} value={s}>{s.replace(/_/g, ' ').toLowerCase().replace(/\b\w/g, c => c.toUpperCase())}</SelectItem>)}
+                  {ORDER_STATUSES.map((s) => <SelectItem key={s} value={s}>{(s ?? '').replace(/_/g, ' ').toLowerCase().replace(/\b\w/g, c => c.toUpperCase())}</SelectItem>)}
                 </SelectContent>
               </Select>
             </div>

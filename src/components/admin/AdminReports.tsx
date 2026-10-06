@@ -309,7 +309,7 @@ export default function AdminReports() {
                               </div>
                             </TableCell>
                             <TableCell className="hidden md:table-cell">
-                              <Badge variant="outline" className="text-xs">{s.role.replace(/_/g, ' ')}</Badge>
+                              <Badge variant="outline" className="text-xs">{(s.role ?? '').replace(/_/g, ' ')}</Badge>
                             </TableCell>
                             <TableCell className="text-right font-semibold text-navy">{s.assignedOrders}</TableCell>
                             <TableCell className="text-right text-emerald-700 font-semibold">{s.completed}</TableCell>

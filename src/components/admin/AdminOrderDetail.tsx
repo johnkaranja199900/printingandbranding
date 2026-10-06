@@ -259,7 +259,7 @@ export function AdminOrderDetail() {
                     <SelectTrigger className="w-full"><SelectValue placeholder="Unassigned" /></SelectTrigger>
                     <SelectContent>
                       <SelectItem value="">Unassigned</SelectItem>
-                      {staff.map((s) => <SelectItem key={s.id} value={s.id}>{s.name} · {s.role.replace(/_/g, ' ').toLowerCase()}</SelectItem>)}
+                      {staff.map((s) => <SelectItem key={s.id} value={s.id}>{s.name} · {(s.role ?? '').replace(/_/g, ' ').toLowerCase()}</SelectItem>)}
                     </SelectContent>
                   </Select>
                 </div>
@@ -320,7 +320,7 @@ export function AdminOrderDetail() {
                       <StatusBadge status={j.status} />
                     </div>
                     <div className="mt-2 space-y-1 text-xs text-slate-600">
-                      <p>Stage: <span className="font-semibold text-navy">{j.stage.replace(/_/g, ' ').toLowerCase()}</span></p>
+                      <p>Stage: <span className="font-semibold text-navy">{(j.stage ?? '').replace(/_/g, ' ').toLowerCase()}</span></p>
                       <p>Assignee: <span className="font-semibold text-navy">{j.assignee?.name ?? 'Unassigned'}</span></p>
                       {j.startedAt && <p>Started: {formatDate(j.startedAt)}</p>}
                       {j.completedAt && <p>Completed: {formatDate(j.completedAt)}</p>}
@@ -346,7 +346,7 @@ export function AdminOrderDetail() {
               <Select value={newStatus} onValueChange={setNewStatus}>
                 <SelectTrigger className="w-full"><SelectValue /></SelectTrigger>
                 <SelectContent>
-                  {ORDER_STATUSES.map((s) => <SelectItem key={s} value={s}>{s.replace(/_/g, ' ').toLowerCase().replace(/\b\w/g, c => c.toUpperCase())}</SelectItem>)}
+                  {ORDER_STATUSES.map((s) => <SelectItem key={s} value={s}>{(s ?? '').replace(/_/g, ' ').toLowerCase().replace(/\b\w/g, c => c.toUpperCase())}</SelectItem>)}
                 </SelectContent>
               </Select>
             </div>

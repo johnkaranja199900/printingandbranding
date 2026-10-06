@@ -319,7 +319,7 @@ export default function AdminCustomers() {
                           </div>
                           <div className="text-right">
                             <p className="font-bold text-navy"><Money amount={o.total} /></p>
-                            <p className="text-xs text-slate-500">{o.status.replace(/_/g, ' ').toLowerCase()}</p>
+                            <p className="text-xs text-slate-500">{(o.status ?? '').replace(/_/g, ' ').toLowerCase()}</p>
                           </div>
                         </li>
                       ))}

@@ -154,7 +154,7 @@ export function BooksView() {
 }
 
 function BookCard({ book }: { book: Book }) {
-  const initials = book.title.split(' ').slice(0, 2).map((w) => w[0]).join('').toUpperCase();
+  const initials = (book.title ?? '').split(' ').slice(0, 2).map((w) => w[0] ?? '').join('').toUpperCase();
   return (
     <article className="group flex flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm transition-all hover:-translate-y-1 hover:shadow-xl">
       <div className="relative h-56 overflow-hidden bg-slate-100">

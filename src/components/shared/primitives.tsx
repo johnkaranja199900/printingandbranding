@@ -97,7 +97,7 @@ const LABELS: Record<string, string> = {
 
 export function StatusBadge({ status, label, className }: { status: string; label?: string; className?: string }) {
   const style = STATUS_STYLES[status] ?? 'bg-slate-100 text-slate-700';
-  const text = label ?? LABELS[status] ?? status.replace(/_/g, ' ').toLowerCase().replace(/\b\w/g, c => c.toUpperCase());
+  const text = label ?? LABELS[status] ?? (status ?? '').replace(/_/g, ' ').toLowerCase().replace(/\b\w/g, c => c.toUpperCase());
   return (
     <span className={cn('inline-flex items-center gap-1 rounded-full px-2.5 py-0.5 text-xs font-semibold capitalize', style, className)}>
       {text}
@@ -114,7 +114,7 @@ export function PriorityBadge({ priority }: { priority: string }) {
   };
   return (
     <span className={cn('inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-semibold capitalize', styles[priority] ?? 'bg-slate-100 text-slate-700')}>
-      {priority.replace(/_/g, ' ').toLowerCase()}
+      {(priority ?? '').replace(/_/g, ' ').toLowerCase()}
     </span>
   );
 }

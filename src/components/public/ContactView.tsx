@@ -159,7 +159,7 @@ export function ContactView() {
                   <ContactRow icon={<MapPin className="h-5 w-5" />} label="Address" value={address} />
                   <ContactRow icon={<Phone className="h-5 w-5" />} label="Phone" value={phone} href={`tel:${phone}`} />
                   <ContactRow icon={<Mail className="h-5 w-5" />} label="Email" value={email} href={`mailto:${email}`} />
-                  <ContactRow icon={<MessageSquare className="h-5 w-5" />} label="WhatsApp" value={phone} href={`https://wa.me/${phone.replace(/[^0-9]/g, '')}`} />
+                  <ContactRow icon={<MessageSquare className="h-5 w-5" />} label="WhatsApp" value={phone} href={`https://wa.me/${(phone ?? '').replace(/[^0-9]/g, '')}`} />
                   <ContactRow icon={<Clock className="h-5 w-5" />} label="Opening Hours" value="Mon - Sat · 8:00 AM - 6:00 PM" />
                 </ul>
 
